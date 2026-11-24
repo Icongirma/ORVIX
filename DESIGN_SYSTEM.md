@@ -340,3 +340,7 @@ Sub-Tabs 1 & 3: Match timeline events, goal timeline, and tactical formations.
 ## Match Details - Telemetry & H2H
 
 Sub-Tabs 2 & 4: Deep telemetry statistics (possession, passing, shots) and historical head-to-head records.
+
+## Team Profile Modal
+
+Tab 4: Interactive squad rosters, head coaches, founding year, and home arena details.
