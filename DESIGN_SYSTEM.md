@@ -308,3 +308,7 @@ Section 5: Non-monetary interactive games including Apex Reflex Trainer, Trackma
 ## Weekly Challenges
 
 Section 6: Community knowledge sprints and trivia quests with progression XP rewards.
+
+## Community Leaderboards
+
+Section 7: Global fan ranking tiers, division badges, and seasonal scoreboards.
