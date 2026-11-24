@@ -344,3 +344,7 @@ Sub-Tabs 2 & 4: Deep telemetry statistics (possession, passing, shots) and histo
 ## Team Profile Modal
 
 Tab 4: Interactive squad rosters, head coaches, founding year, and home arena details.
+
+## Search & Filtering Engine
+
+Instant search across team names, competition titles, venue names, and host cities.
