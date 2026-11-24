@@ -336,3 +336,7 @@ Tab 2: Completed match scores, winner highlights, and possession statistics.
 ## Match Details Modal
 
 Sub-Tabs 1 & 3: Match timeline events, goal timeline, and tactical formations.
+
+## Match Details - Telemetry & H2H
+
+Sub-Tabs 2 & 4: Deep telemetry statistics (possession, passing, shots) and historical head-to-head records.
