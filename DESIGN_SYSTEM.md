@@ -256,3 +256,7 @@ Strictly prohibits gambling, betting odds, wagers, and casino mechanics. All pla
 ## Brand Aesthetic
 
 High-performance motorsport telemetry, broadcast studio displays, and synchronized multicam spectator feeds.
+
+## Responsive Preview Standards
+
+Components must scale seamlessly from 320px mobile up to 1440px desktop ultrawide viewports.
