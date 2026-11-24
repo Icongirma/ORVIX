@@ -328,3 +328,7 @@ Tab 3: Comprehensive league listings covering UEFA Champions League, Premier Lea
 ## Sports Center - Fixtures
 
 Tab 1: Upcoming match schedule with interactive notification reminder alerts and venue details.
+
+## Sports Center - Results
+
+Tab 2: Completed match scores, winner highlights, and possession statistics.
