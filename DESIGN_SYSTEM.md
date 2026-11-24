@@ -312,3 +312,7 @@ Section 6: Community knowledge sprints and trivia quests with progression XP rew
 ## Community Leaderboards
 
 Section 7: Global fan ranking tiers, division badges, and seasonal scoreboards.
+
+## Achievements & Announcements
+
+Section 8 & 9: Trophy cabinet, unlock progress, and official platform broadcast patch announcements.
