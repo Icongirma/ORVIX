@@ -332,3 +332,7 @@ Tab 1: Upcoming match schedule with interactive notification reminder alerts and
 ## Sports Center - Results
 
 Tab 2: Completed match scores, winner highlights, and possession statistics.
+
+## Match Details Modal
+
+Sub-Tabs 1 & 3: Match timeline events, goal timeline, and tactical formations.
