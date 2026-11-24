@@ -276,3 +276,7 @@ All membership features are standardized. Pro Apex tiers, VIP passes, and VIP cl
 ## Anti-Wagering Guarantee
 
 Prediction brackets, wagering odds, and betting slips are strictly excluded from all platform navigation and layout modules.
+
+## Non-Monetary XP
+
+XP, trophies, and seasonal leaderboard standings are purely cosmetic and non-monetary achievements.
