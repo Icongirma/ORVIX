@@ -260,3 +260,7 @@ High-performance motorsport telemetry, broadcast studio displays, and synchroniz
 ## Responsive Preview Standards
 
 Components must scale seamlessly from 320px mobile up to 1440px desktop ultrawide viewports.
+
+## Glow States
+
+Glow buttons utilize box-shadow filters calibrated for electric blue (#267BFF) with zero layout shifts.
