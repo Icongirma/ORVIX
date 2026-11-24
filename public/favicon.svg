@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F95FF" />
+      <stop offset="100%" stop-color="#267BFF" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F3E1B7" />
+      <stop offset="50%" stop-color="#D9BD83" />
+      <stop offset="100%" stop-color="#B3924B" />
+    </linearGradient>
+  </defs>
+  <!-- Background Badge -->
+  <rect width="64" height="64" rx="16" fill="#081329"/>
+  <!-- Kinetic Orbital Arc 1 (Electric Blue) -->
+  <path d="M14 36C12 24 21 14 33 13C41 12 48 16 51 22C47 21 41 20 34 22C24 24 18 31 17 38C15 37 14 36.5 14 36Z" fill="url(#blueGrad)" />
+  <!-- Kinetic Orbital Arc 2 (Electric Blue lower return) -->
+  <path d="M50 28C52 40 43 50 31 51C23 52 16 48 13 42C17 43 23 44 30 42C40 40 46 33 47 26C49 27 50 27.5 50 28Z" fill="url(#blueGrad)" />
+  <!-- Apex Diamond / V-Blade (Champagne Gold) -->
+  <polygon points="32,18 42,32 32,46 22,32" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-linejoin="round" />
+  <circle cx="32" cy="32" r="3.5" fill="url(#goldGrad)" />
+</svg>
