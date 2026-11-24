@@ -324,3 +324,7 @@ All sports scores, telemetry numbers, and fixture calendars are explicitly marke
 ## Sports Center - Leagues
 
 Tab 3: Comprehensive league listings covering UEFA Champions League, Premier League, NBA, and Apex Grand Prix.
+
+## Sports Center - Fixtures
+
+Tab 1: Upcoming match schedule with interactive notification reminder alerts and venue details.
