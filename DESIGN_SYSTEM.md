@@ -292,3 +292,7 @@ Verified 100% text visibility and zero horizontal scroll at 320px, 375px, 430px,
 ## Multicam Simulation Engine
 
 Homepage features 4K 60FPS video simulation stage with Cockpit, Director, Pitwall, and Aerial camera switching.
+
+## Upcoming Fixtures
+
+Multi-sport match fixtures displaying live indicators, 4K badges, kickoff times, and venue metadata.
