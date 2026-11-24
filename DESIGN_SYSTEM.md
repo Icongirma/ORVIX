@@ -272,3 +272,7 @@ Phase 1 verified with 100% build pass, zero unresolved dependencies, and complet
 ## Non-VIP Policy
 
 All membership features are standardized. Pro Apex tiers, VIP passes, and VIP club concierge are removed in favor of equal community access.
+
+## Anti-Wagering Guarantee
+
+Prediction brackets, wagering odds, and betting slips are strictly excluded from all platform navigation and layout modules.
