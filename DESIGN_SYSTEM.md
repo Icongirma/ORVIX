@@ -252,3 +252,7 @@ Following user review and approval of Phase 1, the platform will proceed to:
 ## Terminology Policy
 
 Strictly prohibits gambling, betting odds, wagers, and casino mechanics. All platform features focus purely on sports entertainment and skill progression.
+
+## Brand Aesthetic
+
+High-performance motorsport telemetry, broadcast studio displays, and synchronized multicam spectator feeds.
