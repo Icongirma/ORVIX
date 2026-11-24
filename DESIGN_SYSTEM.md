@@ -316,3 +316,7 @@ Section 7: Global fan ranking tiers, division badges, and seasonal scoreboards.
 ## Achievements & Announcements
 
 Section 8 & 9: Trophy cabinet, unlock progress, and official platform broadcast patch announcements.
+
+## Demo Data Identification
+
+All sports scores, telemetry numbers, and fixture calendars are explicitly marked as demonstration data.
