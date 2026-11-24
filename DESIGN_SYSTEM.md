@@ -284,3 +284,7 @@ XP, trophies, and seasonal leaderboard standings are purely cosmetic and non-mon
 ## Help & Support
 
 VIP support channels replaced with comprehensive community technical assistance and stream setup guides.
+
+## Responsive Layout Debugging Pass
+
+Verified 100% text visibility and zero horizontal scroll at 320px, 375px, 430px, 768px, 1024px, 1280px, and 1440px.
