@@ -304,3 +304,7 @@ Section 4: Completed race classification, shootout pole deltas, and Champions Le
 ## Skill Games Hub
 
 Section 5: Non-monetary interactive games including Apex Reflex Trainer, Trackmaster F1, and Sports Trivia.
+
+## Weekly Challenges
+
+Section 6: Community knowledge sprints and trivia quests with progression XP rewards.
