@@ -296,3 +296,7 @@ Homepage features 4K 60FPS video simulation stage with Cockpit, Director, Pitwal
 ## Upcoming Fixtures
 
 Multi-sport match fixtures displaying live indicators, 4K badges, kickoff times, and venue metadata.
+
+## Latest Sports Results
+
+Section 4: Completed race classification, shootout pole deltas, and Champions League match scoreboards.
