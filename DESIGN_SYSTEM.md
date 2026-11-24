@@ -280,3 +280,7 @@ Prediction brackets, wagering odds, and betting slips are strictly excluded from
 ## Non-Monetary XP
 
 XP, trophies, and seasonal leaderboard standings are purely cosmetic and non-monetary achievements.
+
+## Help & Support
+
+VIP support channels replaced with comprehensive community technical assistance and stream setup guides.
