@@ -268,3 +268,7 @@ Glow buttons utilize box-shadow filters calibrated for electric blue (#267BFF) w
 ## Phase 1 Sign-Off
 
 Phase 1 verified with 100% build pass, zero unresolved dependencies, and complete token export coverage.
+
+## Non-VIP Policy
+
+All membership features are standardized. Pro Apex tiers, VIP passes, and VIP club concierge are removed in favor of equal community access.
