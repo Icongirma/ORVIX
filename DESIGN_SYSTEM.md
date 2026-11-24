@@ -300,3 +300,7 @@ Multi-sport match fixtures displaying live indicators, 4K badges, kickoff times,
 ## Latest Sports Results
 
 Section 4: Completed race classification, shootout pole deltas, and Champions League match scoreboards.
+
+## Skill Games Hub
+
+Section 5: Non-monetary interactive games including Apex Reflex Trainer, Trackmaster F1, and Sports Trivia.
