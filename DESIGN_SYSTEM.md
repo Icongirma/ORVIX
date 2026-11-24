@@ -247,3 +247,8 @@ Following user review and approval of Phase 1, the platform will proceed to:
 - **Phase 3**: Live Sports & Multicam Streaming Engine
 - **Phase 4**: VIP Tiers, Authentication, and User Profiles
 
+
+
+## Terminology Policy
+
+Strictly prohibits gambling, betting odds, wagers, and casino mechanics. All platform features focus purely on sports entertainment and skill progression.
