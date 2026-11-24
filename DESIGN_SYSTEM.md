@@ -320,3 +320,7 @@ Section 8 & 9: Trophy cabinet, unlock progress, and official platform broadcast 
 ## Demo Data Identification
 
 All sports scores, telemetry numbers, and fixture calendars are explicitly marked as demonstration data.
+
+## Sports Center - Leagues
+
+Tab 3: Comprehensive league listings covering UEFA Champions League, Premier League, NBA, and Apex Grand Prix.
