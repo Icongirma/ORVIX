@@ -25,13 +25,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <aside
       className={cn(
-        'hidden lg:flex flex-col border-r border-[#1C3364]/80 bg-[#040A17] sticky top-0 h-screen transition-all duration-300 z-40 select-none overflow-hidden',
+        'hidden lg:flex flex-col border-r border-[#363C42] bg-[#171B1E] sticky top-0 h-screen transition-[width] duration-300 ease-in-out z-40 select-none overflow-hidden flex-shrink-0',
         collapsed ? 'w-20' : 'w-64',
         className
       )}
+      aria-label="Desktop Navigation Sidebar"
     >
       {/* Sidebar Header / Brand Lockup */}
-      <div className="h-16 sm:h-20 flex items-center px-4 border-b border-[#1C3364]/70 flex-shrink-0">
+      <div className="h-16 sm:h-20 flex items-center px-4 border-b border-[#363C42]/80 flex-shrink-0">
         {collapsed ? (
           <div className="w-full flex justify-center">
             <OrvixBrandLockup layout="mark-only" size="md" variant="primary" glow />
@@ -43,14 +44,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
               size="sm"
               variant="primary"
               withTagline
-              taglineText="SPORTS & ENTERTAINMENT"
+              taglineText="PLAY. COMPETE. DISCOVER."
             />
           </div>
         )}
       </div>
 
       {/* Navigation Sections Area */}
-      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-6 scrollbar-none">
+      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-6 scrollbar-none" aria-label="Main Navigation">
         {NAVIGATION_CATEGORIES.map((category) => {
           const items = NAVIGATION_ITEMS.filter((item) => item.category === category.key)
           if (items.length === 0) return null
@@ -58,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           return (
             <div key={category.key} className="space-y-1">
               {!collapsed && (
-                <div className="px-3 pb-1 text-[11px] font-bold uppercase tracking-wider text-[#64748B] font-display">
+                <div className="px-3 pb-1 text-[11px] font-bold uppercase tracking-wider text-[#8D9AA3] font-display">
                   {category.label}
                 </div>
               )}
@@ -74,25 +75,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       type="button"
                       onClick={() => onSelectSection(item.id)}
                       title={collapsed ? item.label : undefined}
+                      aria-label={collapsed ? item.label : undefined}
+                      aria-current={isActive ? 'page' : undefined}
                       className={cn(
-                        'w-full flex items-center rounded-xl text-sm font-medium transition-all duration-200 group relative',
+                        'w-full flex items-center rounded-xl text-sm font-medium transition-all duration-200 group relative outline-none focus-visible:ring-2 focus-visible:ring-[#C6AD7B] active:scale-[0.98]',
                         collapsed ? 'justify-center p-3' : 'px-3.5 py-2.5 gap-3',
                         isActive
-                          ? 'bg-[#15274D] text-[#F4F6FA] font-semibold border border-[#267BFF]/40 shadow-[0_0_16px_rgba(38,123,255,0.25)]'
-                          : 'text-[#94A3B8] hover:text-[#F4F6FA] hover:bg-[#0E1C38] border border-transparent'
+                          ? 'bg-[#2E343A] text-[#F6F5F1] font-semibold border border-[#C6AD7B]/30 shadow-sm'
+                          : 'text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#252A2E] border border-transparent'
                       )}
                     >
                       {/* Active Left Indicator Bar */}
                       {isActive && (
-                        <span className="absolute left-0 top-2 bottom-2 w-1 bg-[#267BFF] rounded-r-full shadow-[0_0_8px_#267BFF]" />
+                        <span
+                          className="absolute left-0 top-2 bottom-2 w-1 bg-[#C6AD7B] rounded-r-full shadow-[0_0_8px_rgba(198,173,123,0.4)]"
+                          aria-hidden="true"
+                        />
                       )}
 
                       {/* Nav Icon */}
                       <Icon
                         className={cn(
                           'w-5 h-5 flex-shrink-0 transition-colors',
-                          isActive ? 'text-[#267BFF]' : 'text-[#94A3B8] group-hover:text-[#F4F6FA]'
+                          isActive ? 'text-[#C6AD7B]' : 'text-[#8D9AA3] group-hover:text-[#F6F5F1]'
                         )}
+                        aria-hidden="true"
                       />
 
                       {/* Nav Label & Badge (when expanded) */}
@@ -118,11 +125,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           className={cn(
                             'absolute top-2 right-2 w-2 h-2 rounded-full',
                             item.badgeVariant === 'live'
-                              ? 'bg-[#FF3B56] animate-pulse'
-                              : item.badgeVariant === 'gold'
-                              ? 'bg-[#D9BD83]'
-                              : 'bg-[#267BFF]'
+                              ? 'bg-[#C6AD7B] animate-pulse'
+                              : 'bg-[#C6AD7B]'
                           )}
+                          aria-hidden="true"
                         />
                       )}
                     </button>
@@ -132,29 +138,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
           )
         })}
-      </div>
+      </nav>
 
-      {/* Sidebar Footer Widget: Stream Status */}
-      <div className="p-3 border-t border-[#1C3364]/70 flex-shrink-0">
+      {/* Sidebar Footer Widget: Stream & Telemetry Status */}
+      <div className="p-3 border-t border-[#363C42]/80 flex-shrink-0">
         {collapsed ? (
           <div
-            title="Stream Engine: 4K HDR Active"
-            className="w-full flex items-center justify-center p-2.5 rounded-xl bg-[#0E1C38] border border-[#1C3364] text-[#00E599]"
+            title="Simulated Telemetry: Demo Feeds Active"
+            className="w-full flex items-center justify-center p-2.5 rounded-xl bg-[#252A2E] border border-[#363C42] text-[#C6AD7B]"
           >
-            <Activity className="w-5 h-5" />
+            <Activity className="w-5 h-5 animate-pulse" />
           </div>
         ) : (
-          <div className="p-3.5 rounded-xl bg-[#0E1C38] border border-[#1C3364] space-y-1.5">
+          <div className="p-3.5 rounded-xl bg-[#252A2E] border border-[#363C42] space-y-1.5">
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 text-xs font-bold font-display text-white">
-                <Activity className="w-3.5 h-3.5 text-[#267BFF]" />
-                Stream Engine
+              <span className="flex items-center gap-1.5 text-xs font-bold font-display text-[#F6F5F1]">
+                <Activity className="w-3.5 h-3.5 text-[#C6AD7B]" />
+                Simulated Telemetry
               </span>
-              <span className="text-[10px] font-mono-stats text-[#00E599] font-bold">4K HDR</span>
+              <span className="w-2 h-2 rounded-full bg-[#729B79] animate-pulse" />
             </div>
-
-            <p className="text-[11px] text-[#94A3B8] leading-tight">
-              Ultra-low latency multicam broadcast active.
+            <p className="text-[11px] text-[#8D9AA3] leading-snug">
+              Demonstration feeds & sample metrics active.
             </p>
           </div>
         )}

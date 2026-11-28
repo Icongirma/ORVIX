@@ -8,13 +8,9 @@ import {
   Medal,
   User,
   HelpCircle,
-  ArrowRight,
-  Shield,
   Activity,
-  Radio,
-  Clock,
-  Compass,
   CheckCircle2,
+  Compass,
 } from 'lucide-react'
 import {
   Container,
@@ -50,8 +46,8 @@ export const MainContent: React.FC<MainContentProps> = ({
   const currentItem = NAVIGATION_ITEMS.find((item) => item.id === activeSection) || NAVIGATION_ITEMS[0]
 
   return (
-    <div className={cn('flex-1 py-6 sm:py-8 lg:py-10', className)}>
-      <Container size="xl" className="space-y-8">
+    <div className={cn('flex-1 py-6 sm:py-8 lg:py-10 bg-[#171B1E] text-[#F6F5F1] min-w-0', className)}>
+      <Container size="xl" className="space-y-6 sm:space-y-8">
         {/* Breadcrumb Hierarchy */}
         <Breadcrumbs
           items={[
@@ -60,7 +56,7 @@ export const MainContent: React.FC<MainContentProps> = ({
           ]}
         />
 
-        {/* Dynamic Section Layout: If Home, render complete 9-section Homepage Suite */}
+        {/* Dynamic Section Layout: If Home, render HomePage; If Sports, render SportsPage */}
         {activeSection === 'home' ? (
           <HomePage onSelectSection={onSelectSection} />
         ) : activeSection === 'sports' ? (
@@ -68,13 +64,13 @@ export const MainContent: React.FC<MainContentProps> = ({
         ) : (
           <>
             {/* Section Header for secondary sections */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#1C3364]/70 min-w-0">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#363C42]/80 min-w-0">
               <div className="space-y-1.5 min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2.5 min-w-0">
-                  <span className="p-2 rounded-lg bg-[#0E1C38] border border-[#1C3364] text-[#267BFF] flex-shrink-0">
+                  <span className="p-2 rounded-lg bg-[#252A2E] border border-[#363C42] text-[#C6AD7B] flex-shrink-0">
                     {React.createElement(currentItem.icon, { className: 'w-5 h-5' })}
                   </span>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-[#F4F6FA] tracking-tight break-words">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-[#F6F5F1] tracking-tight break-words">
                     {currentItem.label}
                   </h1>
                   {currentItem.badge && (
@@ -88,7 +84,7 @@ export const MainContent: React.FC<MainContentProps> = ({
                     </Badge>
                   )}
                 </div>
-                <p className="text-sm sm:text-base text-[#94A3B8] max-w-2xl leading-relaxed break-words">
+                <p className="text-sm sm:text-base text-[#8D9AA3] max-w-2xl leading-relaxed break-words font-body">
                   {currentItem.description}
                 </p>
               </div>
@@ -98,19 +94,18 @@ export const MainContent: React.FC<MainContentProps> = ({
                 <Button
                   size="sm"
                   variant="secondary"
-                  leftIcon={<Activity className="w-4 h-4 text-[#267BFF]" />}
+                  leftIcon={<Activity className="w-4 h-4 text-[#C6AD7B]" />}
                   onClick={() => onSelectSection('sports')}
                 >
-                  Live Telemetry
+                  Simulated Telemetry
                 </Button>
                 <Button
                   size="sm"
                   variant="primary"
-                  glow
                   leftIcon={<Play className="w-4 h-4" />}
                   onClick={() => onSelectSection('sports')}
                 >
-                  Watch Arena
+                  Watch Demo Arena
                 </Button>
               </div>
             </div>
@@ -121,26 +116,26 @@ export const MainContent: React.FC<MainContentProps> = ({
         {activeSection === 'games' && (
           <div className="space-y-6">
             <Card variant="standard" className="p-6">
-              <h3 className="text-lg font-bold font-display text-white">Interactive Entertainment &amp; Esports</h3>
-              <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
-                Compete in real-time fan arenas, community esports tournaments, and interactive game challenges.
+              <h3 className="text-lg font-bold font-display text-[#F6F5F1]">Interactive Entertainment & Esports</h3>
+              <p className="text-xs sm:text-sm text-[#8D9AA3] mt-1 font-body">
+                Participate in simulated fan arenas, community esports brackets, and non-monetary skill challenges.
               </p>
             </Card>
 
             <Grid cols={3} gap="md">
               {['Apex Esports Invitational', 'Global Speedrun Championship', 'Fan Match Arena'].map((title, i) => (
                 <Card key={i} variant="standard">
-                  <CardHeader action={<Badge variant="blue" size="sm">HOT</Badge>}>
-                    <span className="text-xs text-[#267BFF] font-semibold font-display">ESPORTS ARENA</span>
+                  <CardHeader action={<Badge variant="champagne" size="sm">FEATURED</Badge>}>
+                    <span className="text-xs text-[#C6AD7B] font-semibold font-display uppercase tracking-wider">Community Arena</span>
                     <CardTitle>{title}</CardTitle>
-                    <CardDescription>Community Tournament Stage</CardDescription>
+                    <CardDescription>Simulated Tournament Stage</CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-2 text-xs text-[#94A3B8]">
+                  <CardContent className="space-y-2 text-xs text-[#8D9AA3] font-body">
                     <p>• 16 Global Teams Registered</p>
-                    <p>• Sample Tournament Rules &amp; Spectator Feeds</p>
+                    <p>• Simulated Spectator & Telemetry Feeds</p>
                   </CardContent>
                   <CardFooter>
-                    <span className="text-xs text-[#00E599] font-mono-stats">Award: 5,000 XP</span>
+                    <span className="text-xs text-[#C6AD7B] font-mono-stats font-bold">Reward: 5,000 XP</span>
                     <Button size="sm" variant="outline">Enter Arena</Button>
                   </CardFooter>
                 </Card>
@@ -153,27 +148,27 @@ export const MainContent: React.FC<MainContentProps> = ({
         {activeSection === 'challenges' && (
           <div className="space-y-6">
             <Card variant="standard" className="p-6">
-              <h3 className="text-lg font-bold font-display text-white">Weekly Community Challenges</h3>
-              <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
+              <h3 className="text-lg font-bold font-display text-[#F6F5F1]">Weekly Community Challenges</h3>
+              <p className="text-xs sm:text-sm text-[#8D9AA3] mt-1 font-body">
                 Complete sports trivia quests, knowledge sprints, and skill challenges to earn XP and trophy badges.
               </p>
             </Card>
 
             <Grid cols={2} gap="lg">
               <Card variant="standard">
-                <CardHeader action={<Badge variant="blue" size="sm">ACTIVE</Badge>}>
+                <CardHeader action={<Badge variant="champagne" size="sm">ACTIVE</Badge>}>
                   <CardTitle>Apex Monaco Telemetry Quiz</CardTitle>
                   <CardDescription>Answer 5 questions about qualifying sector records.</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2 text-xs text-[#94A3B8]">
+                <CardContent className="space-y-2 text-xs text-[#8D9AA3] font-body">
                   <p>Reward: 500 Fan XP + Lap Master Badge</p>
-                  <div className="w-full bg-[#081329] h-2 rounded-full overflow-hidden border border-[#1C3364]">
-                    <div className="bg-[#267BFF] h-full w-2/3" />
+                  <div className="w-full bg-[#171B1E] h-2 rounded-full overflow-hidden border border-[#363C42]">
+                    <div className="bg-[#C6AD7B] h-full w-2/3 rounded-full" />
                   </div>
-                  <p className="text-[11px] text-[#267BFF] font-mono-stats">66% Completed by Community</p>
+                  <p className="text-[11px] text-[#C6AD7B] font-mono-stats">66% Completed by Community</p>
                 </CardContent>
                 <CardFooter>
-                  <span className="text-xs text-[#94A3B8]">Ends in 2 days</span>
+                  <span className="text-xs text-[#8D9AA3]">Ends in 2 days</span>
                   <Button size="sm" variant="primary">Start Quiz</Button>
                 </CardFooter>
               </Card>
@@ -183,15 +178,15 @@ export const MainContent: React.FC<MainContentProps> = ({
                   <CardTitle>Championship Knowledge Sprint</CardTitle>
                   <CardDescription>Test your knowledge on tournament history and rules.</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2 text-xs text-[#94A3B8]">
+                <CardContent className="space-y-2 text-xs text-[#8D9AA3] font-body">
                   <p>Reward: 750 Fan XP + Sprint Badge</p>
-                  <div className="w-full bg-[#081329] h-2 rounded-full overflow-hidden border border-[#1C3364]">
-                    <div className="bg-[#00E599] h-full w-1/4" />
+                  <div className="w-full bg-[#171B1E] h-2 rounded-full overflow-hidden border border-[#363C42]">
+                    <div className="bg-[#8D9AA3] h-full w-1/4 rounded-full" />
                   </div>
-                  <p className="text-[11px] text-[#00E599] font-mono-stats">25% Community Completed</p>
+                  <p className="text-[11px] text-[#8D9AA3] font-mono-stats">25% Community Completed</p>
                 </CardContent>
                 <CardFooter>
-                  <span className="text-xs text-[#94A3B8]">Starts Tomorrow</span>
+                  <span className="text-xs text-[#8D9AA3]">Starts Tomorrow</span>
                   <Button size="sm" variant="outline">Enter Sprint</Button>
                 </CardFooter>
               </Card>
@@ -203,14 +198,14 @@ export const MainContent: React.FC<MainContentProps> = ({
         {activeSection === 'leaderboard' && (
           <div className="space-y-6">
             <Card variant="standard" className="p-6">
-              <h3 className="text-lg font-bold font-display text-white">Global Fan Standings</h3>
-              <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
+              <h3 className="text-lg font-bold font-display text-[#F6F5F1]">Global Fan Standings</h3>
+              <p className="text-xs sm:text-sm text-[#8D9AA3] mt-1 font-body">
                 Seasonal fan standings and community XP progression.
               </p>
             </Card>
 
             <Card variant="standard" className="overflow-hidden">
-              <div className="divide-y divide-[#1C3364]/70">
+              <div className="divide-y divide-[#363C42]/80">
                 {[
                   { rank: '#1', name: 'Marcus Sterling', score: '18,420 XP', badge: 'DIAMOND TIER', icon: '👑' },
                   { rank: '#2', name: 'Elena Rostova', score: '16,910 XP', badge: 'PLATINUM TIER', icon: '🥈' },
@@ -220,22 +215,22 @@ export const MainContent: React.FC<MainContentProps> = ({
                   <div
                     key={i}
                     className={cn(
-                      'p-3 xs:p-4 flex items-center justify-between gap-2.5 text-sm transition-colors min-w-0',
-                      row.isUser ? 'bg-[#15274D]/80 border-l-4 border-l-[#267BFF]' : 'hover:bg-[#0E1C38]/60'
+                      'p-3.5 xs:p-4 flex items-center justify-between gap-2.5 text-sm transition-colors min-w-0',
+                      row.isUser ? 'bg-[#2E343A] border-l-4 border-l-[#C6AD7B]' : 'hover:bg-[#252A2E]/60'
                     )}
                   >
                     <div className="flex items-center gap-2.5 xs:gap-4 min-w-0 flex-1">
-                      <span className="font-mono-stats font-bold text-sm xs:text-base text-[#D9BD83] w-6 xs:w-8 flex-shrink-0">
+                      <span className="font-mono-stats font-bold text-sm xs:text-base text-[#C6AD7B] w-6 xs:w-8 flex-shrink-0">
                         {row.rank}
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-[#F4F6FA] flex items-center gap-1.5 xs:gap-2 truncate">
+                        <p className="font-semibold text-[#F6F5F1] flex items-center gap-1.5 xs:gap-2 truncate font-display">
                           <span className="truncate">{row.name}</span> {row.icon && <span className="flex-shrink-0">{row.icon}</span>}
                         </p>
-                        <p className="text-[11px] xs:text-xs text-[#94A3B8] truncate">{row.badge}</p>
+                        <p className="text-[11px] xs:text-xs text-[#8D9AA3] truncate">{row.badge}</p>
                       </div>
                     </div>
-                    <span className="font-mono-stats font-bold text-[#00E599] flex-shrink-0 text-xs xs:text-sm pl-2">{row.score}</span>
+                    <span className="font-mono-stats font-bold text-[#F6F5F1] flex-shrink-0 text-xs xs:text-sm pl-2">{row.score}</span>
                   </div>
                 ))}
               </div>
@@ -247,8 +242,8 @@ export const MainContent: React.FC<MainContentProps> = ({
         {activeSection === 'achievements' && (
           <div className="space-y-6">
             <Card variant="standard" className="p-6">
-              <h3 className="text-lg font-bold font-display text-white">Earned Badges &amp; Trophies</h3>
-              <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
+              <h3 className="text-lg font-bold font-display text-[#F6F5F1]">Earned Badges & Trophies</h3>
+              <p className="text-xs sm:text-sm text-[#8D9AA3] mt-1 font-body">
                 Your collectible milestone awards across sports broadcasts and community challenges.
               </p>
             </Card>
@@ -262,18 +257,18 @@ export const MainContent: React.FC<MainContentProps> = ({
                 { title: 'Stadium Pioneer', desc: 'First 1,000 members during platform launch.', unlocked: true },
                 { title: 'Multi-Cam Master', desc: 'Switched between 4 synchronized camera feeds.', unlocked: true },
               ].map((badge, i) => (
-                <Card key={i} variant={badge.unlocked ? 'standard' : 'standard'} className="p-5 space-y-3">
+                <Card key={i} variant="standard" className="p-5 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="p-2.5 rounded-xl bg-[#0E1C38] border border-[#1C3364]">
-                      <Medal className={cn('w-6 h-6', badge.unlocked ? 'text-[#D9BD83]' : 'text-[#64748B]')} />
+                    <span className="p-2.5 rounded-xl bg-[#252A2E] border border-[#363C42]">
+                      <Medal className={cn('w-6 h-6', badge.unlocked ? 'text-[#C6AD7B]' : 'text-[#68737D]')} />
                     </span>
-                    <Badge variant={badge.unlocked ? 'blue' : 'neutral'} size="sm">
+                    <Badge variant={badge.unlocked ? 'champagne' : 'neutral'} size="sm">
                       {badge.unlocked ? 'UNLOCKED' : 'LOCKED'}
                     </Badge>
                   </div>
                   <div>
-                    <h4 className="font-bold text-sm text-[#F4F6FA] font-display">{badge.title}</h4>
-                    <p className="text-xs text-[#94A3B8] mt-1 leading-relaxed">{badge.desc}</p>
+                    <h4 className="font-bold text-sm text-[#F6F5F1] font-display">{badge.title}</h4>
+                    <p className="text-xs text-[#8D9AA3] mt-1 leading-relaxed font-body">{badge.desc}</p>
                   </div>
                 </Card>
               ))}
@@ -286,18 +281,18 @@ export const MainContent: React.FC<MainContentProps> = ({
           <div className="space-y-6">
             <Card variant="standard" className="p-5 sm:p-6">
               <div className="flex flex-col xs:flex-row items-start xs:items-center gap-4 sm:gap-5 min-w-0">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-[#267BFF] to-[#D9BD83] p-[2px] flex-shrink-0">
-                  <div className="w-full h-full rounded-[14px] bg-[#081329] flex items-center justify-center font-display font-black text-xl text-white">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#2E343A] border-2 border-[#C6AD7B] flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <span className="font-display font-black text-xl text-[#C6AD7B]">
                     AR
-                  </div>
+                  </span>
                 </div>
                 <div className="space-y-1 min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2.5 min-w-0">
-                    <h3 className="text-xl font-bold font-display text-white truncate">Alex Rivera</h3>
-                    <Badge variant="blue" size="sm" className="flex-shrink-0">LEVEL 14</Badge>
+                    <h3 className="text-xl font-bold font-display text-[#F6F5F1] truncate">Alex Rivera</h3>
+                    <Badge variant="champagne" size="sm" className="flex-shrink-0">LEVEL 14</Badge>
                   </div>
-                  <p className="text-xs sm:text-sm text-[#94A3B8] break-words">
-                    Community member since October 2026 • <span className="text-[#F4F6FA] break-all">alex.rivera@orvix.internal</span>
+                  <p className="text-xs sm:text-sm text-[#8D9AA3] break-words font-body">
+                    Community member since October 2026 • <span className="text-[#F6F5F1] break-all">alex.rivera@orvix.internal</span>
                   </p>
                 </div>
               </div>
@@ -305,19 +300,19 @@ export const MainContent: React.FC<MainContentProps> = ({
 
             <Grid cols={3} gap="md">
               <Card variant="standard" className="p-5 space-y-2">
-                <span className="text-xs text-[#94A3B8] uppercase tracking-wider font-semibold">Active Stream Quality</span>
-                <p className="text-base font-bold font-display text-white">4K Ultra-HD 60FPS</p>
-                <p className="text-xs text-[#00E599]">Spatial Audio Enabled</p>
+                <span className="text-xs text-[#8D9AA3] uppercase tracking-wider font-semibold">Active Stream Quality</span>
+                <p className="text-base font-bold font-display text-[#F6F5F1]">4K Ultra-HD 60FPS</p>
+                <p className="text-xs text-[#729B79]">Spatial Audio Enabled</p>
               </Card>
               <Card variant="standard" className="p-5 space-y-2">
-                <span className="text-xs text-[#94A3B8] uppercase tracking-wider font-semibold">Fan Ranking</span>
-                <p className="text-base font-bold font-display text-white">Top 2.5% Globally</p>
-                <p className="text-xs text-[#267BFF]">14,840 Season XP</p>
+                <span className="text-xs text-[#8D9AA3] uppercase tracking-wider font-semibold">Fan Ranking</span>
+                <p className="text-base font-bold font-display text-[#F6F5F1]">Top 2.5% Globally</p>
+                <p className="text-xs text-[#C6AD7B] font-mono-stats font-semibold">14,840 Season XP</p>
               </Card>
               <Card variant="standard" className="p-5 space-y-2">
-                <span className="text-xs text-[#94A3B8] uppercase tracking-wider font-semibold">Account Status</span>
-                <p className="text-base font-bold font-display text-[#D9BD83]">Active Fan Account</p>
-                <p className="text-xs text-[#94A3B8]">Verified Member</p>
+                <span className="text-xs text-[#8D9AA3] uppercase tracking-wider font-semibold">Account Status</span>
+                <p className="text-base font-bold font-display text-[#C6AD7B]">Active Fan Account</p>
+                <p className="text-xs text-[#8D9AA3]">Sample Fan Profile</p>
               </Card>
             </Grid>
           </div>
@@ -327,33 +322,33 @@ export const MainContent: React.FC<MainContentProps> = ({
         {activeSection === 'help' && (
           <div className="space-y-6">
             <Card variant="standard" className="p-6">
-              <h3 className="text-lg font-bold font-display text-white">Help &amp; Support</h3>
-              <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
+              <h3 className="text-lg font-bold font-display text-[#F6F5F1]">Help & Support</h3>
+              <p className="text-xs sm:text-sm text-[#8D9AA3] mt-1 font-body">
                 Technical assistance, stream guides, and platform troubleshooting.
               </p>
             </Card>
 
             <Grid cols={3} gap="md">
               <Card variant="standard" className="p-5 space-y-3">
-                <h4 className="font-bold text-sm text-white font-display">Multicam Stream Setup</h4>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                <h4 className="font-bold text-sm text-[#F6F5F1] font-display">Multicam Stream Setup</h4>
+                <p className="text-xs text-[#8D9AA3] leading-relaxed font-body">
                   How to configure synchronized race telemetry and cockpit camera angles.
                 </p>
                 <Button size="sm" variant="outline" fullWidth>Read Guide</Button>
               </Card>
 
               <Card variant="standard" className="p-5 space-y-3">
-                <h4 className="font-bold text-sm text-white font-display">Audio &amp; Bitrate Settings</h4>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">
+                <h4 className="font-bold text-sm text-[#F6F5F1] font-display">Audio & Bitrate Settings</h4>
+                <p className="text-xs text-[#8D9AA3] leading-relaxed font-body">
                   Troubleshoot hardware acceleration, spatial audio, and buffer smoothing.
                 </p>
                 <Button size="sm" variant="outline" fullWidth>Read Guide</Button>
               </Card>
 
               <Card variant="standard" className="p-5 space-y-3">
-                <h4 className="font-bold text-sm text-white font-display">Technical Support Desk</h4>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">
-                  Live assistance with streaming, multicam setup, and platform navigation.
+                <h4 className="font-bold text-sm text-[#F6F5F1] font-display">Technical Support Desk</h4>
+                <p className="text-xs text-[#8D9AA3] leading-relaxed font-body">
+                  Assistance with streaming, multicam setup, and platform navigation.
                 </p>
                 <Button size="sm" variant="primary" fullWidth>Start Support Chat</Button>
               </Card>

@@ -31,27 +31,27 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
   }
 
   return (
-    <div className={cn('min-h-screen bg-[#081329] text-[#F4F6FA] flex flex-col font-body', className)}>
+    <div className={cn('min-h-screen bg-[#171B1E] text-[#F6F5F1] flex flex-col font-body selection:bg-[#C6AD7B] selection:text-[#171B1E]', className)}>
       {/* Top Banner with Quick Switcher to Design System Showcase */}
       {onSwitchToDesignShowcase && (
-        <div className="bg-[#040A17] border-b border-[#1C3364] px-3 xs:px-4 py-1.5 flex items-center justify-between gap-2 text-xs z-50 min-w-0">
+        <aside aria-label="Design system switcher" className="bg-[#171B1E] border-b border-[#363C42] px-3 xs:px-4 py-1.5 flex items-center justify-between gap-2 text-xs z-50 min-w-0">
           <div className="flex items-center gap-2 min-w-0 flex-1">
-            <span className="w-2 h-2 rounded-full bg-[#00E599] animate-pulse flex-shrink-0" />
-            <span className="font-semibold text-[#F4F6FA] truncate">ORVIX Platform</span>
-            <span className="hidden sm:inline text-[#64748B] flex-shrink-0">•</span>
-            <span className="hidden sm:inline text-[#94A3B8] truncate">
-              Active: <span className="text-[#267BFF] font-semibold capitalize">{activeSection}</span>
+            <span className="w-2 h-2 rounded-full bg-[#C6AD7B] animate-pulse flex-shrink-0" />
+            <span className="font-semibold text-[#F6F5F1] truncate">ORVIX Platform</span>
+            <span className="hidden sm:inline text-[#68737D] flex-shrink-0">•</span>
+            <span className="hidden sm:inline text-[#8D9AA3] truncate">
+              Section: <span className="text-[#C6AD7B] font-semibold capitalize">{activeSection}</span>
             </span>
           </div>
 
           <button
             type="button"
             onClick={onSwitchToDesignShowcase}
-            className="text-[#267BFF] hover:text-[#5EA1FF] font-semibold text-xs transition-colors flex items-center gap-1 whitespace-nowrap flex-shrink-0"
+            className="text-[#C6AD7B] hover:text-[#D4BE8D] font-semibold text-xs transition-colors flex items-center gap-1 whitespace-nowrap flex-shrink-0 outline-none focus-visible:ring-1 focus-visible:ring-[#C6AD7B]"
           >
             <span className="hidden xs:inline">Design System</span> Showcase &rarr;
           </button>
-        </div>
+        </aside>
       )}
 
       {/* Main Framework: Sidebar + Core Stage */}
@@ -74,18 +74,21 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
         />
 
         {/* Core Stage: Header + Main Content + Footer */}
-        <div className="flex-1 flex flex-col min-w-0 pb-24 sm:pb-28 lg:pb-0">
+        {/* pb-20 on mobile ensures bottom navigation bar never covers content */}
+        <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
           {/* Desktop & Mobile Header */}
           <Header
             sidebarCollapsed={sidebarCollapsed}
             onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
             onOpenMobileMenu={() => setMobileDrawerOpen(true)}
+            activeSection={activeSection}
+            onSelectSection={handleSelectSection}
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
           />
 
           {/* Main Content Area */}
-          <main className="flex-1 min-w-0">
+          <main className="flex-1 min-w-0" id="main-content">
             <MainContent
               activeSection={activeSection}
               onSelectSection={handleSelectSection}
@@ -97,7 +100,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
         </div>
       </div>
 
-      {/* Mobile Fixed Bottom Navigation Bar (Phone viewports) */}
+      {/* Mobile Fixed Bottom Navigation Bar (<1024px) */}
       <MobileBottomBar
         activeSection={activeSection}
         onSelectSection={handleSelectSection}
