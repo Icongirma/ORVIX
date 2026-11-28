@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -21,6 +22,7 @@ func TestParseMigrationName(t *testing.T) {
 		{"000002_add_sports_tables", "000002", "add_sports_tables"},
 		{"000003_user_preferences_schema", "000003", "user_preferences_schema"},
 		{"000004_gamification_schema", "000004", "gamification_schema"},
+		{"000005_gamification_category_constraints", "000005", "gamification_category_constraints"},
 		{"standalone", "standalone", "standalone"},
 	}
 
@@ -226,8 +228,8 @@ func TestVerifyCompletePlatformSchema(t *testing.T) {
 		t.Errorf("expected 0 migrations on re-run, got %d: %v", len(reApplied), reApplied)
 	}
 
-	// 1. Verify schema_migrations has version 000001, 000002, 000003, and 000004 recorded exactly once
-	for _, ver := range []string{"000001", "000002", "000003", "000004"} {
+	// 1. Verify schema_migrations has version 000001, 000002, 000003, 000004, and 000005 recorded exactly once
+	for _, ver := range []string{"000001", "000002", "000003", "000004", "000005"} {
 		var count int
 		err = db.QueryRowContext(ctx, "SELECT count(*) FROM schema_migrations WHERE version = $1", ver).Scan(&count)
 		if err != nil {
@@ -354,6 +356,9 @@ func TestVerifyCompletePlatformSchema(t *testing.T) {
 		"chk_user_xp_ledger_source_id_non_empty",
 		"chk_user_xp_standings_total_xp",
 		"chk_user_xp_standings_level",
+		"chk_challenges_category",
+		"chk_achievements_category",
+		"chk_achievements_badge_variant",
 	}
 
 	for _, chk := range expectedConstraints {
@@ -790,7 +795,7 @@ func TestGamification_ChallengesAndAchievements(t *testing.T) {
 	// 1. Create achievement fixture
 	_, err = db.ExecContext(ctx, `
 		INSERT INTO achievements (id, code, title, description, category, reward_xp)
-		VALUES ($1, 'TEST_ACH_1', 'Telemetry Master', 'Completed telemetry tasks', 'broadcast', 250)
+		VALUES ($1, 'TEST_ACH_1', 'Telemetry Master', 'Completed telemetry tasks', 'knowledge', 250)
 	`, achID)
 	if err != nil {
 		t.Fatalf("failed to insert achievement: %v", err)
@@ -799,7 +804,7 @@ func TestGamification_ChallengesAndAchievements(t *testing.T) {
 	// 2. Reject duplicate achievement code
 	_, err = db.ExecContext(ctx, `
 		INSERT INTO achievements (id, code, title, category)
-		VALUES ('test_ach_gam_dup', 'TEST_ACH_1', 'Duplicate Code', 'broadcast')
+		VALUES ('test_ach_gam_dup', 'TEST_ACH_1', 'Duplicate Code', 'knowledge')
 	`)
 	if err == nil {
 		t.Error("expected duplicate achievement code to be rejected, got nil")
@@ -1236,5 +1241,181 @@ func TestGamification_CascadingDeletions(t *testing.T) {
 
 	if uachCount != 0 || uxlCount != 0 || uxsCount != 0 {
 		t.Errorf("expected 0 user gamification rows after user deletion, got achievements=%d, ledger=%d, standings=%d", uachCount, uxlCount, uxsCount)
+	}
+}
+
+// TestGamificationCategoryConstraints verifies Milestone 8.3.3c constraints:
+// - Approved challenge categories: trivia, attendance, social, streak.
+// - Rejection of unapproved challenge categories (including prediction/betting).
+// - Approved achievement categories: milestone, loyalty, knowledge, social, special_event.
+// - Rejection of unapproved achievement categories.
+// - Approved badge variants: champagne, bronze, silver, gold, platinum, special.
+// - Rejection of unapproved badge variants.
+// - Existing defaults remain intact (challenges.reward_xp=500, challenges.status='active', achievements.badge_icon='Medal', achievements.badge_variant='champagne').
+func TestGamificationCategoryConstraints(t *testing.T) {
+	cfg := config.Load()
+	if cfg.DBPassword == "" {
+		t.Skip("skipping live test: DB_PASSWORD is empty")
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	db, err := Connect(ctx, cfg)
+	if err != nil {
+		t.Skipf("cannot connect to DB: %v", err)
+	}
+	t.Cleanup(func() {
+		_ = db.Close()
+	})
+
+	cleanupConstraintsTest := func() {
+		cleanupCtx, cleanupCancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cleanupCancel()
+		_, _ = db.ExecContext(cleanupCtx, "DELETE FROM challenges WHERE id LIKE 'test_ch_cat_%'")
+		_, _ = db.ExecContext(cleanupCtx, "DELETE FROM achievements WHERE id LIKE 'test_ach_cat_%'")
+	}
+	cleanupConstraintsTest()
+	t.Cleanup(cleanupConstraintsTest)
+
+	// 1. Challenges category check: Every approved category is accepted
+	approvedChallengeCategories := []string{"trivia", "attendance", "social", "streak"}
+	for i, cat := range approvedChallengeCategories {
+		chID := fmt.Sprintf("test_ch_cat_appr_%d", i)
+		_, err := db.ExecContext(ctx, `
+			INSERT INTO challenges (id, title, category)
+			VALUES ($1, 'Approved Category Challenge', $2)
+		`, chID, cat)
+		if err != nil {
+			t.Errorf("expected approved challenge category %q to be accepted, got error: %v", cat, err)
+		}
+	}
+
+	// 2. Challenges category check: Unapproved categories (including prediction, betting, wagers) must be rejected
+	unapprovedChallengeCategories := []string{"prediction", "betting", "wager", "fantasy", "gambling", "random_unapproved"}
+	for i, cat := range unapprovedChallengeCategories {
+		chID := fmt.Sprintf("test_ch_cat_unappr_%d", i)
+		_, err := db.ExecContext(ctx, `
+			INSERT INTO challenges (id, title, category)
+			VALUES ($1, 'Unapproved Category Challenge', $2)
+		`, chID, cat)
+		if err == nil {
+			t.Errorf("expected unapproved challenge category %q to be rejected by chk_challenges_category, got nil", cat)
+		}
+	}
+
+	// 3. Achievements category check: Every approved category is accepted
+	approvedAchievementCategories := []string{"milestone", "loyalty", "knowledge", "social", "special_event"}
+	for i, cat := range approvedAchievementCategories {
+		achID := fmt.Sprintf("test_ach_cat_appr_%d", i)
+		achCode := fmt.Sprintf("CODE_ACH_APPR_%d", i)
+		_, err := db.ExecContext(ctx, `
+			INSERT INTO achievements (id, code, title, category)
+			VALUES ($1, $2, 'Approved Category Achievement', $3)
+		`, achID, achCode, cat)
+		if err != nil {
+			t.Errorf("expected approved achievement category %q to be accepted, got error: %v", cat, err)
+		}
+	}
+
+	// 4. Achievements category check: Unapproved categories must be rejected
+	unapprovedAchievementCategories := []string{"prediction", "broadcast", "betting", "lottery", "invalid_cat"}
+	for i, cat := range unapprovedAchievementCategories {
+		achID := fmt.Sprintf("test_ach_cat_unappr_%d", i)
+		achCode := fmt.Sprintf("CODE_ACH_UNAPPR_%d", i)
+		_, err := db.ExecContext(ctx, `
+			INSERT INTO achievements (id, code, title, category)
+			VALUES ($1, $2, 'Unapproved Category Achievement', $3)
+		`, achID, achCode, cat)
+		if err == nil {
+			t.Errorf("expected unapproved achievement category %q to be rejected by chk_achievements_category, got nil", cat)
+		}
+	}
+
+	// 5. Badge variant check: Every approved variant is accepted
+	approvedBadgeVariants := []string{"champagne", "bronze", "silver", "gold", "platinum", "special"}
+	for i, variant := range approvedBadgeVariants {
+		achID := fmt.Sprintf("test_ach_var_appr_%d", i)
+		achCode := fmt.Sprintf("CODE_ACH_VAR_%d", i)
+		_, err := db.ExecContext(ctx, `
+			INSERT INTO achievements (id, code, title, category, badge_variant)
+			VALUES ($1, $2, 'Approved Variant Achievement', 'milestone', $3)
+		`, achID, achCode, variant)
+		if err != nil {
+			t.Errorf("expected approved badge variant %q to be accepted, got error: %v", variant, err)
+		}
+	}
+
+	// 6. Badge variant check: Unapproved variants must be rejected
+	unapprovedBadgeVariants := []string{"diamond", "ruby", "emerald", "wood", "invalid"}
+	for i, variant := range unapprovedBadgeVariants {
+		achID := fmt.Sprintf("test_ach_var_unappr_%d", i)
+		achCode := fmt.Sprintf("CODE_ACH_UNVAR_%d", i)
+		_, err := db.ExecContext(ctx, `
+			INSERT INTO achievements (id, code, title, category, badge_variant)
+			VALUES ($1, $2, 'Unapproved Variant Achievement', 'milestone', $3)
+		`, achID, achCode, variant)
+		if err == nil {
+			t.Errorf("expected unapproved badge variant %q to be rejected by chk_achievements_badge_variant, got nil", variant)
+		}
+	}
+
+	// 7. Verify existing defaults remain intact
+	defChID := "test_ch_cat_defaults"
+	_, err = db.ExecContext(ctx, `
+		INSERT INTO challenges (id, title, category)
+		VALUES ($1, 'Default Values Challenge', 'trivia')
+	`, defChID)
+	if err != nil {
+		t.Fatalf("failed to insert default challenge: %v", err)
+	}
+
+	var rewardXP, totalSteps int
+	var status string
+	err = db.QueryRowContext(ctx, `
+		SELECT reward_xp, total_steps, status FROM challenges WHERE id = $1
+	`, defChID).Scan(&rewardXP, &totalSteps, &status)
+	if err != nil {
+		t.Fatalf("failed to query default challenge: %v", err)
+	}
+	if rewardXP != 500 {
+		t.Errorf("expected default challenges.reward_xp = 500, got %d", rewardXP)
+	}
+	if totalSteps != 1 {
+		t.Errorf("expected default challenges.total_steps = 1, got %d", totalSteps)
+	}
+	if status != "active" {
+		t.Errorf("expected default challenges.status = 'active', got %q", status)
+	}
+
+	defAchID := "test_ach_cat_defaults"
+	_, err = db.ExecContext(ctx, `
+		INSERT INTO achievements (id, code, title, category)
+		VALUES ($1, 'DEF_ACH_CODE', 'Default Values Achievement', 'milestone')
+	`, defAchID)
+	if err != nil {
+		t.Fatalf("failed to insert default achievement: %v", err)
+	}
+
+	var badgeIcon, badgeVariant string
+	var achRewardXP int
+	var isSecret bool
+	err = db.QueryRowContext(ctx, `
+		SELECT badge_icon, badge_variant, reward_xp, is_secret FROM achievements WHERE id = $1
+	`, defAchID).Scan(&badgeIcon, &badgeVariant, &achRewardXP, &isSecret)
+	if err != nil {
+		t.Fatalf("failed to query default achievement: %v", err)
+	}
+	if badgeIcon != "Medal" {
+		t.Errorf("expected default achievements.badge_icon = 'Medal', got %q", badgeIcon)
+	}
+	if badgeVariant != "champagne" {
+		t.Errorf("expected default achievements.badge_variant = 'champagne', got %q", badgeVariant)
+	}
+	if achRewardXP != 0 {
+		t.Errorf("expected default achievements.reward_xp = 0, got %d", achRewardXP)
+	}
+	if isSecret != false {
+		t.Errorf("expected default achievements.is_secret = false, got %v", isSecret)
 	}
 }
