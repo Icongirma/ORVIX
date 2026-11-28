@@ -41,11 +41,11 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
             <div className="flex flex-col gap-2 max-w-2xl">
               {badge && <div>{badge}</div>}
               {title && (
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#F4F6FA] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#F6F5F1] tracking-tight">
                   {title}
                 </h2>
               )}
-              {subtitle && <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed">{subtitle}</p>}
+              {subtitle && <p className="text-sm sm:text-base text-[#8D9AA3] leading-relaxed font-body">{subtitle}</p>}
             </div>
             {action && <div className="flex-shrink-0 self-start md:self-end">{action}</div>}
           </div>
@@ -57,4 +57,3 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
 )
 
 Section.displayName = 'Section'
-

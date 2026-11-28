@@ -23,16 +23,16 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className }) =>
 
           return (
             <li key={item.id} className="inline-flex items-center gap-1.5">
-              {index > 0 && <ChevronRight className="w-3.5 h-3.5 text-[#64748B] flex-shrink-0" />}
+              {index > 0 && <ChevronRight className="w-3.5 h-3.5 text-[#4D565E] flex-shrink-0" />}
               {isLast ? (
-                <span className="font-semibold text-[#F4F6FA] select-none" aria-current="page">
+                <span className="font-semibold text-[#F6F5F1] select-none" aria-current="page">
                   {item.label}
                 </span>
               ) : (
                 <button
                   type="button"
                   onClick={item.onClick}
-                  className="text-[#94A3B8] hover:text-[#267BFF] transition-colors font-medium select-none"
+                  className="text-[#8D9AA3] hover:text-[#C6AD7B] transition-colors font-medium select-none"
                 >
                   {item.label}
                 </button>
@@ -44,4 +44,3 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, className }) =>
     </nav>
   )
 }
-

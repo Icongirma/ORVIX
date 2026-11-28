@@ -27,8 +27,8 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
     return (
       <div className={cn('relative flex items-center', fullWidth ? 'w-full' : 'w-72')}>
-        <div className="absolute left-3.5 flex items-center justify-center text-[#94A3B8] pointer-events-none">
-          <Search className="w-4 h-4 text-[#267BFF]" />
+        <div className="absolute left-3.5 flex items-center justify-center text-[#8D9AA3] pointer-events-none">
+          <Search className="w-4 h-4 text-[#8D9AA3]" />
         </div>
 
         <input
@@ -39,7 +39,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
           disabled={disabled}
           placeholder={placeholder}
           className={cn(
-            'h-11 w-full pl-10 pr-20 rounded-lg bg-[#0E1C38] text-[#F4F6FA] text-sm placeholder:text-[#64748B] border border-[#1C3364] outline-none transition-all duration-200 focus:border-[#267BFF] focus:ring-2 focus:ring-[#267BFF]/30',
+            'h-11 w-full pl-10 pr-20 rounded-lg bg-[#252A2E] text-[#F6F5F1] text-sm placeholder:text-[#8D9AA3]/60 border border-[#363C42] outline-none transition-all duration-200 focus:border-[#C6AD7B] focus:ring-2 focus:ring-[#C6AD7B]/20 font-body',
             disabled && 'opacity-50 cursor-not-allowed',
             className
           )}
@@ -52,14 +52,14 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
               type="button"
               onClick={onClear}
               aria-label="Clear search"
-              className="p-1 text-[#94A3B8] hover:text-[#F4F6FA] hover:bg-[#15274D] rounded transition-colors"
+              className="p-1 text-[#8D9AA3] hover:text-[#C6AD7B] hover:bg-[#2E343A] rounded transition-colors"
             >
               <X className="w-3.5 h-3.5" />
             </button>
           )}
 
           {shortcutKey && (
-            <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[11px] font-mono text-[#94A3B8] bg-[#15274D] border border-[#1C3364] rounded">
+            <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium text-[#8D9AA3] bg-[#171B1E] border border-[#363C42] rounded">
               {shortcutKey}
             </kbd>
           )}
@@ -70,4 +70,3 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 )
 
 SearchInput.displayName = 'SearchInput'
-

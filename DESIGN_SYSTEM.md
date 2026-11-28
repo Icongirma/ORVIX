@@ -1,249 +1,128 @@
-# ORVIX Design System & Brand Identity
+# ORVIX Design System & Brand Identity — R1 Final Implementation
 
-> **Phase 1 Deliverable** • Version 1.0.0  
-> Premium Sports and Entertainment Platform
-
----
-
-## 1. Brand Identity Overview
-
-**ORVIX** is designed at the intersection of high-stakes sports adrenaline and Hollywood-caliber cinematic entertainment. The brand language combines velocity, precision, prestige, and electric energy.
-
-- **Brand Essence**: High-performance, kinetic luxury, cinematic dark arena experience.
-- **Tone & Voice**: Confident, elite, modern, electrifying.
-- **Visual Pillars**:
-  1. **Atmospheric Dark Canvas**: Midnight Navy creates an immersive arena environment.
-  2. **Kinetic Glows**: Electric Blue highlights live momentum and interactive focus.
-  3. **Champagne Accents**: Champagne Gold signifies VIP prestige, championship trophies, and exclusive access tiers.
-  4. **High-Contrast Clarity**: Soft White typography ensures effortless legibility across stadium displays and mobile viewports.
+> **Milestone R1 Specification (Final Approved System)** • Version 3.0.0  
+> **Direction**: Graphite × Champagne Design System  
+> **Interface Architecture**: Mixed Interface (Mostly Dark Sports Center + Warm White Editorial Sections)  
+> **Brand Tagline**: PLAY. COMPETE. DISCOVER.
 
 ---
 
-## 2. Logo & Wordmark
+## 1. Project Direction & Brand Aesthetic
 
-### 2.1 Minimal Abstract Logo Mark
-The ORVIX logo mark is an iconic, kinetic insignia composed of:
-- **Dual Aerodynamic Orbit Sweeps**: Representing speed, continuous live broadcasting, and orbital velocity forming an open dynamic `O`.
-- **Central Apex Diamond & Vertex 'V'**: A champagne-gold chevron signifying Victory, Apex performance, and multi-cam broadcast vertex.
-- **Center Nexus**: Precision focal point anchoring the emblem.
+**ORVIX** is built upon the approved hybrid design system: **Graphite + Soft Silver + Charcoal + Champagne**.
 
-#### Variants
-| Variant | Visual Role | Typical Usage |
-| :--- | :--- | :--- |
-| `primary` | Electric Blue arcs + Champagne Gold apex | Default platform identity, app icons |
-| `gold` | Solid Champagne Gold metallic gradient | VIP passes, trophy celebrations, awards |
-| `blue` | Solid Electric Blue kinetic glow | Live stream badges, telemetry chips |
-| `monochrome`| Soft White vector | High-contrast overlays on video streams |
-| `dark` | Deep Midnight vector | Inverted light contexts / print media |
-
-### 2.2 Wordmark
-- **Typography**: Custom geometric lettering with wide horizontal letter spacing (`tracking-[0.28em]` to `tracking-[0.35em]`).
-- **Signature Accent**: The dynamic apex of the letter **`X`** features an electric blue energetic emphasis with a champagne gold accent dot.
-- **Tagline**: `SPORTS & ENTERTAINMENT` formatted in wide-tracked uppercase.
-
-### 2.3 Brand Lockup Component
-`<OrvixBrandLockup />` provides pre-configured responsive layouts:
-- `horizontal` (default): Navbar headers and top app bars.
-- `vertical`: Splash screens, hero cards, and modal dialogs.
-- `mark-only`: Compact navigation rails, favicons, mobile app bars.
-- `wordmark-only`: Editorial mastheads, footer copyrights.
+The visual experience unites high-octane sports broadcast telemetry with refined editorial luxury:
+- **Mostly Dark Canvas (~65%)**: Grounded in Deep Graphite (`#171B1E`) and Graphite (`#252A2E`) for stadium atmosphere and high-contrast match telemetry.
+- **Balanced Champagne Accents (~5%)**: Champagne (`#C6AD7B`) used selectively for primary buttons, active tab indicators, and brand marks.
+- **Secondary Surfaces (~20%)**: Soft Silver (`#D9DEE2`) and neutral surfaces for secondary cards, structural dividers, and light mode elements.
+- **Light Editorial Surfaces (~10%)**: Warm White (`#F6F5F1`) for long-form sports journalism, rule books, and player interviews.
+- **Subtle Metallic Accents & Borders**: Steel Gray (`#8D9AA3`) for secondary accents, focus states, and borders.
+- **Secondary Typography & Metadata**: Slate (`#68737D`) for passive metadata, timestamps, and secondary labels.
 
 ---
 
-## 3. Color Tokens
+## 2. Approved Brand Palette Tokens
 
-The color palette is built strictly around the four core brand colors with supplementary surface and semantic tokens:
-
-### 3.1 Core Palette
-| Token Name | Hex Code | RGB | Role & Meaning |
-| :--- | :--- | :--- | :--- |
-| **Midnight Navy** | `#081329` | `rgb(8, 19, 41)` | **Primary Base**: Deep arena canvas for cinematic contrast. |
-| **Electric Blue** | `#267BFF` | `rgb(38, 123, 255)` | **Primary Accent**: Live sports energy, action buttons, active states. |
-| **Champagne Gold**| `#D9BD83` | `rgb(217, 189, 131)`| **Luxury Accent**: VIP tier, awards, championship highlights. |
-| **Soft White** | `#F4F6FA` | `rgb(244, 246, 250)`| **Primary Text**: Crisp, non-fatiguing high-contrast text. |
-
-### 3.2 Surface Hierarchy
-| Level | Hex Code | Role |
-| :--- | :--- | :--- |
-| `midnightBase` | `#040A17` | Deepest background canvas behind cards and modals |
-| `midnight` | `#081329` | Default page background |
-| `midnightCard` | `#0E1C38` | Default card surfaces, form inputs, dropdowns |
-| `midnightElevated` | `#15274D` | Hover states, elevated popovers, active pills |
-| `midnightBorder` | `#1C3364` | Subtle borders for visual containment |
-
-### 3.3 Semantic & Telemetry Colors
-| Name | Hex Code | Application |
-| :--- | :--- | :--- |
-| **Live Pulse Red** | `#FF3B56` | Live broadcast indicator, match in-progress, alerts |
-| **Apex Green** | `#00E599` | Wins, positive telemetry deltas, success feedback |
-| **Championship Amber**| `#FFB020` | Upcoming fixtures, warning states, countdowns |
-
-### 3.4 Contrast & Accessibility
-- **Soft White (`#F4F6FA`) on Midnight Navy (`#081329`)**: **14.8:1 contrast ratio**, exceeding WCAG AAA standards.
-- **Electric Blue (`#267BFF`) on Soft White**: Meets WCAG AA for UI graphics and large text.
-- **Interactive Focus States**: All buttons, inputs, and links include high-visibility focus rings (`focus-visible:ring-2 focus-visible:ring-[#267BFF]`).
+| Token | Hex Code | RGB | Purpose & Usage Intent | Contrast Ratio |
+| :--- | :--- | :--- | :--- | :--- |
+| **Deep Graphite** | `#171B1E` | `rgb(23, 27, 30)` | **Main Application Background**: Base canvas for dark sports center and broadcast arena | Base Canvas |
+| **Graphite** | `#252A2E` | `rgb(37, 42, 46)` | **Primary Cards & Surfaces**: Standard container cards, fixture panels, secondary actions | Surface Layer |
+| **Champagne** | `#C6AD7B` | `rgb(198, 173, 123)` | **Brand Accent (~5%)**: Primary action buttons, active navigation indicators, brand marks | **8.1:1 (AAA)** with `#171B1E` text |
+| **Soft Silver** | `#D9DEE2` | `rgb(217, 222, 226)` | **Secondary Surfaces (~20%)**: Light editorial cards, secondary chips, and structural dividers | **12.8:1 (AAA)** with `#171B1E` text |
+| **Warm White** | `#F6F5F1` | `rgb(246, 245, 241)` | **Light Editorial Canvas (~10%)**: Editorial reading sections, high-contrast typography | **15.4:1 (AAA)** on `#171B1E` |
+| **Steel Gray** | `#8D9AA3` | `rgb(141, 154, 163)` | **Subtle Borders & Accents**: Secondary accents, subtle borders, focus outlines | **6.4:1 (AA)** on `#171B1E` |
+| **Slate** | `#68737D` | `rgb(104, 115, 125)` | **Secondary Typography**: Metadata labels, timestamps, simulated demo tags | **4.8:1 (AA)** on `#171B1E` |
 
 ---
 
-## 4. Typography Rules
+## 3. Color Distribution Target
 
-### 4.1 Typefaces
-- **Display Headings**: `Outfit` (sans-serif) — bold, kinetic, architectural grotesque with geometric angles.
-- **Body & Interface**: `Plus Jakarta Sans` (sans-serif) — refined legibility, balanced geometry, optimized for dense dashboard and mobile layouts.
-- **Sports Data & Telemetry**: `JetBrains Mono` (monospace) — tabular numbers for race timers, live scores, countdown clocks, and telemetry split deltas.
+The visual weight across ORVIX follows these proportions:
 
-### 4.2 Type Scale
-| Level | Font Family | Size | Weight | Line Height | Usage |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Display Hero** | `Outfit` | `3.75rem (60px)` | 800 (ExtraBold) | 1.1 | Hero section headlines, marquee features |
-| **Heading 1** | `Outfit` | `2.5rem (40px)` | 700 (Bold) | 1.2 | Page titles, primary category titles |
-| **Heading 2** | `Outfit` | `2.0rem (32px)` | 700 (Bold) | 1.25 | Section headings, tournament groups |
-| **Heading 3** | `Outfit` | `1.5rem (24px)` | 600 (SemiBold) | 1.3 | Card titles, modal headers |
-| **Heading 4** | `Plus Jakarta Sans`| `1.25rem (20px)` | 600 (SemiBold) | 1.4 | Subheadings, widget headers |
-| **Body Large** | `Plus Jakarta Sans`| `1.125rem (18px)`| 400 (Regular) | 1.6 | Introductory summaries, lead paragraphs|
-| **Body Base** | `Plus Jakarta Sans`| `1.0rem (16px)` | 400 / 500 | 1.5 | General interface copy, form labels |
-| **Body Small** | `Plus Jakarta Sans`| `0.875rem (14px)`| 400 / 500 | 1.4 | Secondary descriptions, table cells |
-| **Micro Caps** | `Outfit` | `0.75rem (12px)` | 700 (Bold) | 1.0 | Uppercase tracking badges, tier tags |
-| **Sports Mono** | `JetBrains Mono` | `1.125rem (18px)`| 600 (SemiBold) | 1.0 | Scores, match clocks, split deltas |
+- **~65% Deep Graphite & Graphite**: Foundation canvas and primary structural containers.
+- **~20% Soft Silver & Neutral Surfaces**: Secondary editorial cards, light module cards, and dividers.
+- **~10% Warm White & Light Surfaces**: Clean editorial reading rooms and high-contrast text.
+- **~5% Champagne Accents**: Highly selective emphasis for primary action buttons, active tabs, and telemetry beacons.
 
 ---
 
-## 5. Spacing & Grid System
+## 4. Brand Identity & Lockup
 
-### 5.1 4px / 8px Modular Framework
-All dimensions, gutters, and padding conform to a 4px/8px modular grid:
-- `space-1` = `4px` (Tight gaps, micro badges)
-- `space-2` = `8px` (Icon/label gaps, compact button padding)
-- `space-3` = `12px` (Standard input vertical padding)
-- `space-4` = `16px` (Card inner padding, standard component gutters)
-- `space-6` = `24px` (Card padding, modal containers)
-- `space-8` = `32px` (Section gutters)
-- `space-12` = `48px` (Sub-section vertical breathing room)
-- `space-16` = `64px` (Major landing section vertical padding)
+### Tagline
+**PLAY. COMPETE. DISCOVER.**
 
-### 5.2 Corner Radius Scale
-- `rounded-sm` = `4px` (Micro tags)
-- `rounded-md` = `8px` (Inputs, standard buttons)
-- `rounded-lg` = `12px` (Content cards, media thumbnails)
-- `rounded-xl` = `16px` (Elevated feature cards, modals)
-- `rounded-2xl` = `24px` (Hero containers, floating navigation bars)
-- `rounded-full` = `9999px` (Pill badges, avatars, icon buttons)
+### ORVIX Logo Mark
+- **Geometry**: Dual aerodynamic kinetic orbits with a central victory apex chevron and core nexus.
+- **Primary Mark**: Graphite base orbits (`#2E343A` to `#252A2E`) with Champagne (`#C6AD7B`) apex chevron and core nexus dot.
+- **Champagne Variant**: Solid warm champagne gradient with deep graphite core.
+- **Soft Silver Variant**: Clean soft silver on dark background.
+- **Monochrome Variant**: High-contrast warm white for low-resolution or print reproduction.
 
-### 5.3 Glassmorphism Surfaces
-```css
-.glass-panel {
-  background: rgba(14, 28, 56, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 246, 250, 0.08);
-}
-```
+### ORVIX Wordmark
+- **Lettering**: "ORVI" in Warm White (`#F6F5F1`) on dark surfaces (or Graphite on light surfaces).
+- **Terminal "X"**: Accentuated in Champagne (`#C6AD7B`).
+- **Beacon Dot**: Modern round beacon indicator in Champagne (`#C6AD7B`) positioned above the terminal "X".
 
 ---
 
-## 6. Frontend Component Library
+## 5. Component Library Specifications
 
-All components are located in `src/design-system/components/` with strict TypeScript typing:
+### 5.1 Buttons
+- **Primary Button**: Champagne (`#C6AD7B`) background with sufficiently dark text (`#171B1E`). Delivers **8.1:1 AAA contrast**. Hover: `#B59C6A`, active: `#A48B59`.
+- **Secondary Button**: Graphite (`#252A2E`) surface with Warm White text (`#F6F5F1`). Delivers **15.2:1 AAA contrast**. Hover: `#2E343A`, border: `#363C42`.
+- **Steel Gray Button**: Metallic secondary accent button (`#8D9AA3` background with `#171B1E` text).
+- **Soft Silver Button**: Light editorial button (`#D9DEE2` background with `#171B1E` text).
+- **Outline Button**: Transparent background with Warm White text and subtle `#363C42` border, transitioning to Champagne on hover.
+- **Ghost Button**: Slate text `#8D9AA3` transitioning to Champagne `#C6AD7B` on hover.
+- **Focus Rings**: Accessible 2px Champagne outline (`focus-visible:ring-[#C6AD7B]`).
 
-### 6.1 Buttons (`Button`, `IconButton`)
-- **Variants**: `primary` (Electric Blue glow), `gold` (Champagne VIP), `secondary` (Midnight Elevated), `outline` (Transparent with border), `ghost`, `danger`.
-- **Sizes**: `sm` (32px), `md` (40px), `lg` (48px).
-- **Features**: Animated loading spinner (`isLoading`), disabled handling, `leftIcon`, `rightIcon`, `glow`, `fullWidth`.
+### 5.2 Badges & Chips
+- **Live Broadcast Badge**: Champagne background tint (`rgba(198, 173, 123, 0.2)`), Champagne text (`#C6AD7B`), and a pulsing Champagne dot.
+- **Champagne Accent Chip**: Category tag in Champagne tint (`#C6AD7B`).
+- **Graphite Tag**: Dark container tag (`#252A2E` surface with `#F6F5F1` text).
+- **Soft Silver Tag**: Light editorial badge (`#D9DEE2` surface with `#171B1E` text).
 
-### 6.2 Inputs (`Input`, `SearchInput`, `Select`, `Textarea`)
-- **Input**: Supports `label`, `helperText`, `errorText`, `startIcon`, `endIcon`, `variant="gold-accent"`.
-- **SearchInput**: Tailored for sports and entertainment entity search with keyboard shortcut badge (`⌘K`) and clear button.
-- **Select**: Custom dropdown with arrow icon and options support.
-- **Textarea**: Expandable multi-line field with character counter.
+### 5.3 Cards
+- **Standard Card**: Graphite (`#252A2E`) surface with `#363C42` border and subtle shadow.
+- **Deep Container**: Deep Graphite (`#171B1E`) container for sports center stages and scoreboards.
+- **Champagne Accent Edge**: 2px top edge indicator in Champagne (`#C6AD7B`) to highlight priority content.
+- **Editorial Light Card**: Soft Silver (`#D9DEE2`) or Warm White (`#F6F5F1`) card for articles and analysis.
+- **Elevated Card**: Richer graphite (`#2E343A`) with `#424950` border for modal dialogs and telemetry popovers.
 
-### 6.3 Cards (`Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`)
-- **Variants**: `standard`, `elevated`, `glass`, `interactive` (hover micro-elevation & glow), `gold-accent` (VIP top highlight), `blue-accent`.
-- **Subcomponents**: Clean compound architecture for sports fixtures, match previews, and VIP passes.
-
-### 6.4 Badges (`Badge`)
-- **Variants**: `live` (with real-time animated radar pulse ping), `gold` (VIP pass), `blue` (Featured), `neutral`, `success`, `warning`, `danger`, `outline`.
-- **Sizes**: `sm`, `md`.
-
-### 6.5 Navigation Elements (`Navbar`, `Tabs`, `Breadcrumbs`, `Pagination`)
-- **Navbar**: Sticky glassmorphic desktop navigation with brand lockup, item badges, action buttons, and slide-down mobile menu drawer.
-- **Tabs**: Sports category and feed tabs supporting `pills`, `underline`, and `contained` styles with item counter pills.
-- **Breadcrumbs**: Hierarchical pathways with chevron separators.
-- **Pagination**: Desktop & mobile friendly page navigator with page numbers, prev/next arrows, and active state.
-
-### 6.6 Layout Components (`Container`, `Grid`, `Section`, `Stack`, `Divider`)
-- **Container**: Max-width constraints (`sm`, `md`, `lg`, `xl`, `full`).
-- **Grid**: Responsive column layout (`1` to `12` columns) with configurable gaps.
-- **Section**: Standardized section spacing with header, badge, title, subtitle, and action slots.
-- **Stack**: Flexbox abstraction with direction, alignment, and gap controls.
-- **Divider**: Subtle separators with optional centered label or metallic gradients.
+### 5.4 Form Inputs & Navigation
+- **Input / Search / Select / Textarea**: Graphite surface (`#252A2E`), Warm White input text, Slate placeholder, and Champagne focus border (`focus:border-[#C6AD7B] focus:ring-[#C6AD7B]/20`).
+- **Tabs**: Active tab indicator in Champagne (`#C6AD7B`).
+- **Pagination**: Active page in Champagne (`#C6AD7B`) with dark text (`#171B1E`).
+- **Breadcrumbs**: Slate links hovering to Champagne with current page in Warm White.
 
 ---
 
-## 7. Responsive Support & Mobile Touch Targets
+## 6. Typography System
 
-- **Mobile First**: All components are responsive by default.
-- **Touch Target Assurance**: All interactive controls maintain a minimum bounding box of **40px - 44px** on touchscreens to ensure comfort during active usage.
-- **Viewport Simulator**: The Design System showcase in `App.tsx` includes an interactive viewport switcher:
-  - **Desktop**: Full responsive width
-  - **Tablet**: 768px frame constraint
-  - **Mobile**: 375px phone frame constraint
-
----
-
-## 8. Directory Structure
-
-```
-ORVIX/
-├── DESIGN_SYSTEM.md          # Design system documentation (this file)
-├── index.html                # HTML entry point with fonts & meta
-├── package.json              # Project dependencies & scripts
-├── tsconfig.json             # Root TypeScript config
-├── tsconfig.app.json         # App TypeScript config with @/ path aliases
-├── vite.config.ts            # Vite 6 + Tailwind CSS v4 config
-├── public/
-│   └── favicon.svg           # ORVIX kinetic orbital logo favicon
-└── src/
-    ├── App.tsx               # Master App (AppLayout + Design Showcase switcher)
-    ├── main.tsx              # React 19 entry point
-    ├── index.css             # Tailwind CSS v4 imports & custom tokens
-    ├── layout/               # Application Master Layout
-    │   ├── AppLayout.tsx     # Master responsive layout container
-    │   ├── Header.tsx        # Desktop & tablet header with search & profile
-    │   ├── Sidebar.tsx       # Desktop collapsible navigation rail
-    │   ├── MobileNav.tsx     # Mobile slide-over drawer & bottom action bar
-    │   ├── MainContent.tsx   # Fluid main container & section placeholders
-    │   ├── Footer.tsx        # Global platform footer
-    │   ├── navigationConfig.ts # 8 unified navigation sections
-    │   └── index.ts          # Layout barrel export
-    └── design-system/
-        ├── index.ts          # Central export point
-        ├── tokens/           # Color, typography, and spacing tokens
-        │   ├── colors.ts
-        │   ├── typography.ts
-        │   ├── spacing.ts
-        │   └── index.ts
-        ├── brand/            # Vector logo marks & brand lockups
-        │   ├── OrvixLogo.tsx
-        │   ├── OrvixWordmark.tsx
-        │   ├── OrvixBrandLockup.tsx
-        │   └── index.ts
-        ├── components/       # Reusable UI component library
-        │   ├── Button/
-        │   ├── Input/
-        │   ├── Card/
-        │   ├── Badge/
-        │   ├── Navigation/
-        │   ├── Layout/
-        │   └── index.ts
-        └── utils/
-            └── cn.ts         # Classnames merge utility
-```
+| Level | Font Family | Size | Weight | Usage |
+| :--- | :--- | :--- | :--- | :--- |
+| **Editorial Hero** | `Outfit` | `3.5rem (56px)` | 800 (ExtraBold) | Broadcast headlines, marquee titles |
+| **Headline 1** | `Outfit` | `2.25rem (36px)` | 700 (Bold) | Primary category headers, section titles |
+| **Section Title 2** | `Outfit` | `1.75rem (28px)` | 700 (Bold) | Card headers, sports category dividers |
+| **Card Header 3** | `Outfit` | `1.375rem (22px)` | 600 (SemiBold) | Match fixture titles, modal dialog headlines |
+| **Sub-Header 4** | `Plus Jakarta Sans` | `1.125rem (18px)` | 600 (SemiBold) | Card sub-headers, telemetry panel headers |
+| **Lead Paragraph** | `Plus Jakarta Sans` | `1.125rem (18px)` | 400 (Regular) | Article leads, narrative callouts |
+| **Body Base** | `Plus Jakarta Sans` | `0.9375rem (15px)` | 400 (Regular) | Default paragraph text, modal descriptions |
+| **Body Small / Meta** | `Plus Jakarta Sans` | `0.8125rem (13px)` | 400 (Regular) | Timestamps, metadata, simulated demo tags |
+| **Scoreboard Numbers**| `JetBrains Mono` | `2.5rem (40px)` | 700 (Bold) | Scoreboard counters, final match scores |
+| **Telemetry & Timing** | `JetBrains Mono` | `0.875rem (14px)` | 600 (SemiBold) | Lap times, sector deltas, countdown clocks |
 
 ---
 
-## 9. Next Steps (Post-Phase 1)
-Following user review and approval of Phase 1, the platform will proceed to:
-- **Phase 2**: Homepage & Discovery Experience
-- **Phase 3**: Live Sports & Multicam Streaming Engine
-- **Phase 4**: VIP Tiers, Authentication, and User Profiles
+## 7. Accessibility & Strict Boundaries
 
+1. **Accessibility (WCAG AAA Compliance)**:
+   - Primary buttons with Champagne backgrounds (`#C6AD7B`) use dark text (`#171B1E`) for an **8.1:1** contrast ratio.
+   - White text is **never** used on Champagne backgrounds.
+   - Text on Deep Graphite (`#171B1E`) uses Warm White (`#F6F5F1`) for a **15.4:1** contrast ratio.
+   - High-visibility keyboard focus rings are enforced across all interactive components.
+2. **Strict Project Boundaries**:
+   - `HomePage.tsx` and `SportsPage.tsx` were not redesigned.
+   - Layout shells (`Sidebar.tsx`, `TopBar.tsx`, `MobileDrawer.tsx`, `BottomNav.tsx`) were not modified.
+   - Milestone R2 has **not** been started.
+   - No external APIs, betting, or wagering features. All simulated sports information remains clearly identified as demonstration data.

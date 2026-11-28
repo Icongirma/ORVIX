@@ -1,9 +1,25 @@
 import React from 'react'
 import { cn } from '../utils/cn'
 
+export type LogoVariant =
+  | 'primary'
+  | 'champagne'
+  | 'steel'
+  | 'silver'
+  | 'graphite'
+  | 'monochrome'
+  | 'dark'
+  // Legacy aliases
+  | 'charcoal'
+  | 'lime'
+  | 'forest'
+  | 'coral'
+  | 'gold'
+  | 'blue'
+
 export interface OrvixLogoProps extends React.SVGProps<SVGSVGElement> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | number
-  variant?: 'primary' | 'gold' | 'blue' | 'monochrome' | 'dark'
+  variant?: LogoVariant
   glow?: boolean
   className?: string
 }
@@ -25,38 +41,50 @@ export const OrvixLogo: React.FC<OrvixLogoProps> = ({
   ...props
 }) => {
   const dimension = typeof size === 'number' ? size : sizeMap[size]
-
-  // Unique ID prefix for SVG gradient definitions to prevent collisions
   const idPrefix = React.useId().replace(/:/g, '')
 
   // Color schemes for variations
   const renderDefs = () => {
     switch (variant) {
+      case 'champagne':
       case 'gold':
+      case 'lime':
         return (
           <defs>
-            <linearGradient id={`${idPrefix}-gold`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F9E8C8" />
-              <stop offset="50%" stopColor="#D9BD83" />
-              <stop offset="100%" stopColor="#B3924B" />
+            <linearGradient id={`${idPrefix}-champagne`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#D4BE8D" />
+              <stop offset="100%" stopColor="#C6AD7B" />
             </linearGradient>
-            <filter id={`${idPrefix}-glow`} x1="-20%" y1="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
           </defs>
         )
-      case 'blue':
+      case 'steel':
         return (
           <defs>
-            <linearGradient id={`${idPrefix}-blue`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#6BA6FF" />
-              <stop offset="100%" stopColor="#267BFF" />
+            <linearGradient id={`${idPrefix}-steel`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#A4B1BA" />
+              <stop offset="100%" stopColor="#8D9AA3" />
             </linearGradient>
-            <filter id={`${idPrefix}-glow`} x1="-20%" y1="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
+          </defs>
+        )
+      case 'silver':
+        return (
+          <defs>
+            <linearGradient id={`${idPrefix}-silver`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#F6F5F1" />
+              <stop offset="100%" stopColor="#D9DEE2" />
+            </linearGradient>
+          </defs>
+        )
+      case 'graphite':
+      case 'dark':
+      case 'charcoal':
+      case 'forest':
+        return (
+          <defs>
+            <linearGradient id={`${idPrefix}-graphite`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#2E343A" />
+              <stop offset="100%" stopColor="#252A2E" />
+            </linearGradient>
           </defs>
         )
       case 'monochrome':
@@ -64,36 +92,32 @@ export const OrvixLogo: React.FC<OrvixLogoProps> = ({
           <defs>
             <linearGradient id={`${idPrefix}-white`} x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFFFFF" />
-              <stop offset="100%" stopColor="#E2E8F0" />
+              <stop offset="100%" stopColor="#F6F5F1" />
             </linearGradient>
           </defs>
         )
-      case 'dark':
+      case 'coral':
         return (
           <defs>
-            <linearGradient id={`${idPrefix}-dark`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1E293B" />
-              <stop offset="100%" stopColor="#081329" />
+            <linearGradient id={`${idPrefix}-coral-warm`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#EE9375" />
+              <stop offset="100%" stopColor="#E47D5B" />
             </linearGradient>
           </defs>
         )
+      case 'blue':
       case 'primary':
       default:
         return (
           <defs>
-            <linearGradient id={`${idPrefix}-blue-primary`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#5EA1FF" />
-              <stop offset="100%" stopColor="#267BFF" />
+            <linearGradient id={`${idPrefix}-graphite-base`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#2E343A" />
+              <stop offset="100%" stopColor="#252A2E" />
             </linearGradient>
-            <linearGradient id={`${idPrefix}-gold-accent`} x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#F5E4BE" />
-              <stop offset="50%" stopColor="#D9BD83" />
-              <stop offset="100%" stopColor="#B69550" />
+            <linearGradient id={`${idPrefix}-champagne-accent`} x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#D4BE8D" />
+              <stop offset="100%" stopColor="#C6AD7B" />
             </linearGradient>
-            <filter id={`${idPrefix}-glow`} x1="-20%" y1="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3.5" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
           </defs>
         )
     }
@@ -102,41 +126,61 @@ export const OrvixLogo: React.FC<OrvixLogoProps> = ({
   // Determine fills based on variant
   const getFills = () => {
     switch (variant) {
+      case 'champagne':
       case 'gold':
+      case 'lime':
         return {
-          upperArc: `url(#${idPrefix}-gold)`,
-          lowerArc: `url(#${idPrefix}-gold)`,
-          apexChevron: `url(#${idPrefix}-gold)`,
-          coreNexus: '#F9E8C8',
+          upperArc: `url(#${idPrefix}-champagne)`,
+          lowerArc: `url(#${idPrefix}-champagne)`,
+          apexChevron: '#171B1E',
+          coreNexus: '#171B1E',
         }
-      case 'blue':
+      case 'steel':
         return {
-          upperArc: `url(#${idPrefix}-blue)`,
-          lowerArc: `url(#${idPrefix}-blue)`,
-          apexChevron: `url(#${idPrefix}-blue)`,
-          coreNexus: '#FFFFFF',
+          upperArc: `url(#${idPrefix}-steel)`,
+          lowerArc: `url(#${idPrefix}-steel)`,
+          apexChevron: '#171B1E',
+          coreNexus: '#8D9AA3',
+        }
+      case 'silver':
+        return {
+          upperArc: `url(#${idPrefix}-silver)`,
+          lowerArc: `url(#${idPrefix}-silver)`,
+          apexChevron: '#171B1E',
+          coreNexus: '#C6AD7B',
+        }
+      case 'graphite':
+      case 'dark':
+      case 'charcoal':
+      case 'forest':
+        return {
+          upperArc: `url(#${idPrefix}-graphite)`,
+          lowerArc: `url(#${idPrefix}-graphite)`,
+          apexChevron: '#C6AD7B',
+          coreNexus: '#C6AD7B',
         }
       case 'monochrome':
         return {
           upperArc: `url(#${idPrefix}-white)`,
           lowerArc: `url(#${idPrefix}-white)`,
           apexChevron: `url(#${idPrefix}-white)`,
-          coreNexus: '#FFFFFF',
+          coreNexus: '#C6AD7B',
         }
-      case 'dark':
+      case 'coral':
         return {
-          upperArc: `url(#${idPrefix}-dark)`,
-          lowerArc: `url(#${idPrefix}-dark)`,
-          apexChevron: '#081329',
-          coreNexus: '#267BFF',
+          upperArc: `url(#${idPrefix}-coral-warm)`,
+          lowerArc: `url(#${idPrefix}-coral-warm)`,
+          apexChevron: '#F6F5F1',
+          coreNexus: '#171B1E',
         }
+      case 'blue':
       case 'primary':
       default:
         return {
-          upperArc: `url(#${idPrefix}-blue-primary)`,
-          lowerArc: `url(#${idPrefix}-blue-primary)`,
-          apexChevron: `url(#${idPrefix}-gold-accent)`,
-          coreNexus: '#D9BD83',
+          upperArc: `url(#${idPrefix}-graphite-base)`,
+          lowerArc: `url(#${idPrefix}-graphite-base)`,
+          apexChevron: `url(#${idPrefix}-champagne-accent)`,
+          coreNexus: '#C6AD7B',
         }
     }
   }
@@ -154,9 +198,7 @@ export const OrvixLogo: React.FC<OrvixLogoProps> = ({
       aria-label="ORVIX Logo Mark"
       className={cn(
         'transition-transform duration-300 select-none flex-shrink-0',
-        glow && variant === 'primary' && 'filter drop-shadow-[0_0_12px_rgba(38,123,255,0.6)]',
-        glow && variant === 'gold' && 'filter drop-shadow-[0_0_12px_rgba(217,189,131,0.6)]',
-        glow && variant === 'blue' && 'filter drop-shadow-[0_0_12px_rgba(38,123,255,0.7)]',
+        glow && 'filter drop-shadow-[0_2px_8px_rgba(198,173,123,0.22)]',
         className
       )}
       {...props}
@@ -167,18 +209,18 @@ export const OrvixLogo: React.FC<OrvixLogoProps> = ({
       <path
         d="M22 55C18 36 31 19 50 17C64 15 76 22 81 31C74 30 65 29 54 32C39 35 30 46 28 57C25 56 23 55.5 22 55Z"
         fill={fills.upperArc}
-        opacity={variant === 'primary' ? '0.95' : '1'}
+        opacity="0.95"
       />
 
       {/* Aerodynamic Kinetic Orbit Ring - Lower Counter-Sweep */}
       <path
         d="M78 45C82 64 69 81 50 83C36 85 24 78 19 69C26 70 35 71 46 68C61 65 70 54 72 43C75 44 77 44.5 78 45Z"
         fill={fills.lowerArc}
-        opacity={variant === 'primary' ? '0.95' : '1'}
+        opacity="0.95"
       />
 
       {/* Central Victory Apex Diamond / Dynamic V */}
-      <g filter={glow ? `url(#${idPrefix}-glow)` : undefined}>
+      <g>
         <polygon
           points="50,26 67,50 50,74 33,50"
           fill="none"
@@ -202,4 +244,3 @@ export const OrvixLogo: React.FC<OrvixLogoProps> = ({
     </svg>
   )
 }
-

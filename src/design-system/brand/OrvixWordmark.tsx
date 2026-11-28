@@ -1,9 +1,25 @@
 import React from 'react'
 import { cn } from '../utils/cn'
 
+export type WordmarkVariant =
+  | 'primary'
+  | 'champagne'
+  | 'steel'
+  | 'silver'
+  | 'graphite'
+  | 'monochrome'
+  | 'dark'
+  // Legacy aliases
+  | 'charcoal'
+  | 'lime'
+  | 'forest'
+  | 'coral'
+  | 'gold'
+  | 'blue'
+
 export interface OrvixWordmarkProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-  variant?: 'primary' | 'gold' | 'blue' | 'monochrome' | 'dark'
+  variant?: WordmarkVariant
   withTagline?: boolean
   taglineText?: string
   className?: string
@@ -13,54 +29,83 @@ export const OrvixWordmark: React.FC<OrvixWordmarkProps> = ({
   size = 'md',
   variant = 'primary',
   withTagline = false,
-  taglineText = 'SPORTS & ENTERTAINMENT',
+  taglineText = 'PLAY. COMPETE. DISCOVER.',
   className,
   ...props
 }) => {
   const sizeClasses = {
-    sm: 'text-xl tracking-[0.25em]',
-    md: 'text-2xl sm:text-3xl tracking-[0.28em]',
-    lg: 'text-4xl sm:text-5xl tracking-[0.3em]',
-    xl: 'text-5xl sm:text-6xl tracking-[0.32em]',
-    '2xl': 'text-6xl sm:text-7xl tracking-[0.35em]',
+    sm: 'text-lg sm:text-xl tracking-[0.22em] sm:tracking-[0.25em]',
+    md: 'text-xl sm:text-2xl md:text-3xl tracking-[0.24em] sm:tracking-[0.28em]',
+    lg: 'text-2xl sm:text-4xl lg:text-5xl tracking-[0.24em] sm:tracking-[0.3em]',
+    xl: 'text-3xl xs:text-4xl sm:text-5xl lg:text-6xl tracking-[0.22em] sm:tracking-[0.32em]',
+    '2xl': 'text-4xl sm:text-6xl lg:text-7xl tracking-[0.25em] sm:tracking-[0.35em]',
   }
 
   const taglineSizes = {
-    sm: 'text-[9px] tracking-[0.35em] mt-0.5',
-    md: 'text-[10px] sm:text-xs tracking-[0.4em] mt-1',
-    lg: 'text-xs sm:text-sm tracking-[0.45em] mt-1.5',
-    xl: 'text-sm sm:text-base tracking-[0.5em] mt-2',
-    '2xl': 'text-base sm:text-lg tracking-[0.55em] mt-2.5',
+    sm: 'text-[9px] tracking-[0.25em] sm:tracking-[0.35em] mt-0.5',
+    md: 'text-[10px] sm:text-xs tracking-[0.28em] sm:tracking-[0.4em] mt-1',
+    lg: 'text-[10px] sm:text-xs lg:text-sm tracking-[0.3em] sm:tracking-[0.45em] mt-1.5',
+    xl: 'text-[11px] sm:text-sm lg:text-base tracking-[0.28em] sm:tracking-[0.5em] mt-2',
+    '2xl': 'text-xs sm:text-base lg:text-lg tracking-[0.32em] sm:tracking-[0.55em] mt-2.5',
   }
 
   const getWordmarkColors = () => {
     switch (variant) {
+      case 'champagne':
       case 'gold':
+      case 'lime':
         return {
-          main: 'bg-gradient-to-r from-[#F9E8C8] via-[#D9BD83] to-[#B3924B] bg-clip-text text-transparent',
-          tagline: 'text-[#D9BD83]/80',
+          main: 'text-[#C6AD7B]',
+          tagline: 'text-[#C6AD7B]/80',
+          accentX: 'text-[#F6F5F1]',
+          beacon: 'bg-[#F6F5F1]',
         }
-      case 'blue':
+      case 'steel':
         return {
-          main: 'bg-gradient-to-r from-[#7AB1FF] via-[#267BFF] to-[#1258CC] bg-clip-text text-transparent',
-          tagline: 'text-[#267BFF]/80',
+          main: 'text-[#8D9AA3]',
+          tagline: 'text-[#8D9AA3]/80',
+          accentX: 'text-[#C6AD7B]',
+          beacon: 'bg-[#C6AD7B]',
+        }
+      case 'silver':
+        return {
+          main: 'text-[#D9DEE2]',
+          tagline: 'text-[#68737D]',
+          accentX: 'text-[#C6AD7B]',
+          beacon: 'bg-[#C6AD7B]',
+        }
+      case 'graphite':
+      case 'dark':
+      case 'charcoal':
+      case 'forest':
+        return {
+          main: 'text-[#252A2E]',
+          tagline: 'text-[#68737D]',
+          accentX: 'text-[#C6AD7B]',
+          beacon: 'bg-[#C6AD7B]',
         }
       case 'monochrome':
         return {
-          main: 'text-[#F4F6FA]',
-          tagline: 'text-[#94A3B8]',
+          main: 'text-[#F6F5F1]',
+          tagline: 'text-[#8D9AA3]',
+          accentX: 'text-[#F6F5F1]',
+          beacon: 'bg-[#F6F5F1]',
         }
-      case 'dark':
+      case 'coral':
         return {
-          main: 'text-[#081329]',
-          tagline: 'text-[#081329]/70',
+          main: 'text-[#F6F5F1]',
+          tagline: 'text-[#8D9AA3]',
+          accentX: 'text-[#E47D5B]',
+          beacon: 'bg-[#E47D5B]',
         }
+      case 'blue':
       case 'primary':
       default:
         return {
-          main: 'text-[#F4F6FA]',
-          accentX: 'text-[#267BFF]',
-          tagline: 'text-[#D9BD83]/90',
+          main: 'text-[#F6F5F1]',
+          accentX: 'text-[#C6AD7B]',
+          beacon: 'bg-[#C6AD7B]',
+          tagline: 'text-[#8D9AA3]',
         }
     }
   }
@@ -75,16 +120,16 @@ export const OrvixWordmark: React.FC<OrvixWordmarkProps> = ({
       {...props}
     >
       <div className={cn('font-black uppercase flex items-center leading-none', sizeClasses[size])}>
-        {variant === 'primary' ? (
+        {variant === 'monochrome' ? (
+          <span className={colors.main}>ORVIX</span>
+        ) : (
           <>
             <span className={colors.main}>ORVI</span>
-            <span className="text-[#267BFF] relative inline-block transition-transform duration-300">
+            <span className={cn('relative inline-block transition-transform duration-300', colors.accentX)}>
               X
-              <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#D9BD83] rounded-full opacity-90 hidden sm:inline-block" />
+              <span className={cn('absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full opacity-90 hidden sm:inline-block', colors.beacon)} />
             </span>
           </>
-        ) : (
-          <span className={colors.main}>ORVIX</span>
         )}
       </div>
 
@@ -102,4 +147,3 @@ export const OrvixWordmark: React.FC<OrvixWordmarkProps> = ({
     </div>
   )
 }
-

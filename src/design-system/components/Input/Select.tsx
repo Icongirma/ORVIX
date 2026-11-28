@@ -25,7 +25,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className={cn('flex flex-col gap-1.5', fullWidth ? 'w-full' : 'w-auto')}>
         {label && (
-          <label htmlFor={selectId} className="text-xs sm:text-sm font-medium text-[#F4F6FA]/90 select-none">
+          <label htmlFor={selectId} className="text-xs sm:text-sm font-medium text-[#F6F5F1]/90 select-none font-display">
             {label}
           </label>
         )}
@@ -36,33 +36,32 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             id={selectId}
             disabled={disabled}
             className={cn(
-              'h-11 w-full pl-3.5 pr-10 rounded-lg bg-[#0E1C38] text-[#F4F6FA] text-sm border outline-none appearance-none transition-all duration-200 cursor-pointer',
+              'h-11 w-full pl-3.5 pr-10 rounded-lg bg-[#252A2E] text-[#F6F5F1] text-sm border outline-none appearance-none transition-all duration-200 cursor-pointer font-body',
               hasError
-                ? 'border-[#FF3B56] focus:border-[#FF3B56] focus:ring-2 focus:ring-[#FF3B56]/30'
-                : 'border-[#1C3364] focus:border-[#267BFF] focus:ring-2 focus:ring-[#267BFF]/30',
-              disabled && 'opacity-50 cursor-not-allowed bg-[#081329]',
+                ? 'border-[#C25B5B] focus:border-[#C25B5B] focus:ring-2 focus:ring-[#C25B5B]/25'
+                : 'border-[#363C42] focus:border-[#C6AD7B] focus:ring-2 focus:ring-[#C6AD7B]/20',
+              disabled && 'opacity-50 cursor-not-allowed bg-[#171B1E]',
               className
             )}
             {...props}
           >
             {options.map((opt) => (
-              <option key={opt.value} value={opt.value} className="bg-[#081329] text-[#F4F6FA]">
+              <option key={opt.value} value={opt.value} className="bg-[#171B1E] text-[#F6F5F1]">
                 {opt.label} {opt.badge ? `(${opt.badge})` : ''}
               </option>
             ))}
           </select>
 
-          <div className="absolute right-3.5 flex items-center justify-center text-[#94A3B8] pointer-events-none">
+          <div className="absolute right-3.5 flex items-center justify-center text-[#8D9AA3] pointer-events-none">
             <ChevronDown className="w-4 h-4" />
           </div>
         </div>
 
-        {hasError && <p className="text-xs text-[#FF3B56] font-medium">{errorText}</p>}
-        {!hasError && helperText && <p className="text-xs text-[#94A3B8]">{helperText}</p>}
+        {hasError && <p className="text-xs text-[#C25B5B] font-medium mt-0.5">{errorText}</p>}
+        {!hasError && helperText && <p className="text-xs text-[#8D9AA3] mt-0.5">{helperText}</p>}
       </div>
     )
   }
 )
 
 Select.displayName = 'Select'
-

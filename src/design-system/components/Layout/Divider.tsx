@@ -4,7 +4,7 @@ import { cn } from '../../utils/cn'
 export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
   orientation?: 'horizontal' | 'vertical'
   label?: React.ReactNode
-  variant?: 'subtle' | 'border' | 'electric' | 'gold'
+  variant?: 'subtle' | 'border' | 'champagne' | 'steel' | 'graphite' | 'silver' | 'charcoal' | 'lime' | 'coral' | 'forest' | 'electric' | 'gold'
 }
 
 export const Divider: React.FC<DividerProps> = ({
@@ -15,10 +15,19 @@ export const Divider: React.FC<DividerProps> = ({
   ...props
 }) => {
   const lineVariantStyles = {
-    subtle: 'bg-[#1C3364]/40',
-    border: 'bg-[#1C3364]',
-    electric: 'bg-gradient-to-r from-transparent via-[#267BFF] to-transparent',
-    gold: 'bg-gradient-to-r from-transparent via-[#D9BD83] to-transparent',
+    subtle: 'bg-[#363C42]/50',
+    border: 'bg-[#363C42]',
+    champagne: 'bg-gradient-to-r from-transparent via-[#C6AD7B] to-transparent',
+    steel: 'bg-gradient-to-r from-transparent via-[#8D9AA3] to-transparent',
+    graphite: 'bg-gradient-to-r from-transparent via-[#363C42] to-transparent',
+    silver: 'bg-gradient-to-r from-transparent via-[#D9DEE2] to-transparent',
+    // Legacy aliases
+    charcoal: 'bg-gradient-to-r from-transparent via-[#363C42] to-transparent',
+    lime: 'bg-gradient-to-r from-transparent via-[#C6AD7B] to-transparent',
+    coral: 'bg-gradient-to-r from-transparent via-[#E47D5B] to-transparent',
+    forest: 'bg-gradient-to-r from-transparent via-[#363C42] to-transparent',
+    electric: 'bg-gradient-to-r from-transparent via-[#C6AD7B] to-transparent',
+    gold: 'bg-gradient-to-r from-transparent via-[#C6AD7B] to-transparent',
   }
 
   if (orientation === 'vertical') {
@@ -36,7 +45,7 @@ export const Divider: React.FC<DividerProps> = ({
     return (
       <div className={cn('relative flex items-center my-6', className)} role="separator" {...props}>
         <div className={cn('flex-grow h-[1px]', lineVariantStyles[variant])} />
-        <span className="flex-shrink mx-4 text-xs font-semibold uppercase tracking-wider text-[#94A3B8] font-display">
+        <span className="flex-shrink mx-4 text-xs font-semibold uppercase tracking-wider text-[#8D9AA3] font-display">
           {label}
         </span>
         <div className={cn('flex-grow h-[1px]', lineVariantStyles[variant])} />
@@ -52,4 +61,3 @@ export const Divider: React.FC<DividerProps> = ({
     />
   )
 }
-

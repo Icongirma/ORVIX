@@ -1,7 +1,28 @@
 import React from 'react'
 import { cn } from '../../utils/cn'
 
-export type BadgeVariant = 'live' | 'gold' | 'blue' | 'neutral' | 'success' | 'warning' | 'danger' | 'outline'
+export type BadgeVariant =
+  | 'live'
+  | 'champagne'
+  | 'champagne-solid'
+  | 'steel'
+  | 'graphite'
+  | 'silver'
+  | 'neutral'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'outline'
+  // Legacy aliases
+  | 'charcoal'
+  | 'lime'
+  | 'forest'
+  | 'coral'
+  | 'ivory'
+  | 'sage'
+  | 'gold'
+  | 'blue'
+
 export type BadgeSize = 'sm' | 'md'
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -29,27 +50,60 @@ export const Badge: React.FC<BadgeProps> = ({
   }
 
   const variantStyles: Record<BadgeVariant, string> = {
-    live: 'bg-[#FF3B56]/15 text-[#FF3B56] border border-[#FF3B56]/30',
-    gold: 'bg-[#D9BD83]/15 text-[#D9BD83] border border-[#D9BD83]/40 shadow-[0_0_12px_rgba(217,189,131,0.2)]',
-    blue: 'bg-[#267BFF]/15 text-[#267BFF] border border-[#267BFF]/30 shadow-[0_0_12px_rgba(38,123,255,0.2)]',
-    neutral: 'bg-[#15274D] text-[#94A3B8] border border-[#1C3364]',
-    success: 'bg-[#00E599]/15 text-[#00E599] border border-[#00E599]/30',
-    warning: 'bg-[#FFB020]/15 text-[#FFB020] border border-[#FFB020]/30',
-    danger: 'bg-[#FF3B56]/20 text-[#FF6B81] border border-[#FF3B56]/30',
-    outline: 'bg-transparent text-[#F4F6FA] border border-[#1C3364]',
+    // Champagne brand accent chip
+    champagne: 'bg-[#C6AD7B]/20 text-[#C6AD7B] border border-[#C6AD7B]/40',
+    // Champagne solid chip
+    'champagne-solid': 'bg-[#C6AD7B] text-[#171B1E] border border-[#D4BE8D]',
+    // Live broadcasting indicator
+    live: 'bg-[#C6AD7B]/20 text-[#C6AD7B] border border-[#C6AD7B]/40',
+    // Steel Gray secondary accent
+    steel: 'bg-[#8D9AA3]/18 text-[#8D9AA3] border border-[#8D9AA3]/35',
+    // Graphite / Broadcast surface
+    graphite: 'bg-[#252A2E] text-[#F6F5F1] border border-[#363C42]',
+    // Soft Silver / Editorial surface
+    silver: 'bg-[#D9DEE2] text-[#171B1E] border border-[#CAD0D5]',
+    // Neutral slate
+    neutral: 'bg-[#252A2E] text-[#8D9AA3] border border-[#363C42]',
+    // Outline
+    outline: 'bg-transparent text-[#F6F5F1] border border-[#363C42]',
+    // Status states
+    success: 'bg-[#729B79]/18 text-[#729B79] border border-[#729B79]/35',
+    warning: 'bg-[#C4924A]/18 text-[#C4924A] border border-[#C4924A]/35',
+    danger: 'bg-[#C25B5B]/18 text-[#C25B5B] border border-[#C25B5B]/35',
+
+    // Legacy aliases mapped
+    charcoal: 'bg-[#252A2E] text-[#F6F5F1] border border-[#363C42]',
+    lime: 'bg-[#C6AD7B]/20 text-[#C6AD7B] border border-[#C6AD7B]/40',
+    forest: 'bg-[#252A2E] text-[#F6F5F1] border border-[#363C42]',
+    coral: 'bg-[#E47D5B]/20 text-[#E47D5B] border border-[#E47D5B]/40',
+    ivory: 'bg-[#D9DEE2] text-[#171B1E] border border-[#CAD0D5]',
+    sage: 'bg-[#252A2E] text-[#8D9AA3] border border-[#363C42]',
+    gold: 'bg-[#C6AD7B]/20 text-[#C6AD7B] border border-[#C6AD7B]/40',
+    blue: 'bg-[#C6AD7B]/20 text-[#C6AD7B] border border-[#C6AD7B]/40',
   }
 
   const shouldPulse = pulse || variant === 'live'
 
   const pulseDotColor: Record<BadgeVariant, string> = {
-    live: 'bg-[#FF3B56]',
-    gold: 'bg-[#D9BD83]',
-    blue: 'bg-[#267BFF]',
-    neutral: 'bg-[#94A3B8]',
-    success: 'bg-[#00E599]',
-    warning: 'bg-[#FFB020]',
-    danger: 'bg-[#FF3B56]',
-    outline: 'bg-[#F4F6FA]',
+    champagne: 'bg-[#C6AD7B]',
+    'champagne-solid': 'bg-[#171B1E]',
+    live: 'bg-[#C6AD7B]',
+    steel: 'bg-[#8D9AA3]',
+    graphite: 'bg-[#C6AD7B]',
+    silver: 'bg-[#171B1E]',
+    neutral: 'bg-[#68737D]',
+    outline: 'bg-[#F6F5F1]',
+    success: 'bg-[#729B79]',
+    warning: 'bg-[#C4924A]',
+    danger: 'bg-[#C25B5B]',
+    charcoal: 'bg-[#C6AD7B]',
+    lime: 'bg-[#C6AD7B]',
+    forest: 'bg-[#C6AD7B]',
+    coral: 'bg-[#E47D5B]',
+    ivory: 'bg-[#171B1E]',
+    sage: 'bg-[#68737D]',
+    gold: 'bg-[#C6AD7B]',
+    blue: 'bg-[#C6AD7B]',
   }
 
   return (
@@ -65,8 +119,8 @@ export const Badge: React.FC<BadgeProps> = ({
           <span className={cn('relative inline-flex rounded-full h-2 w-2', pulseDotColor[variant])} />
         </span>
       )}
-      {icon && !shouldPulse && <span className="inline-flex items-center flex-shrink-0">{icon}</span>}
-      <span className="truncate">{children}</span>
+      {icon && <span className="inline-flex items-center flex-shrink-0">{icon}</span>}
+      <span>{children}</span>
     </span>
   )
 }

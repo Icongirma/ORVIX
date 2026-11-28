@@ -8,7 +8,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   startIcon?: React.ReactNode
   endIcon?: React.ReactNode
   fullWidth?: boolean
-  variant?: 'default' | 'gold-accent'
+  variant?: 'default' | 'silver' | 'light' | 'forest'
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -37,7 +37,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-xs sm:text-sm font-medium text-[#F4F6FA]/90 select-none flex items-center justify-between"
+            className="text-xs sm:text-sm font-medium text-[#F6F5F1]/90 select-none flex items-center justify-between font-display"
           >
             <span>{label}</span>
           </label>
@@ -45,7 +45,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         <div className="relative flex items-center">
           {startIcon && (
-            <div className="absolute left-3.5 flex items-center justify-center text-[#94A3B8] pointer-events-none">
+            <div className="absolute left-3.5 flex items-center justify-center text-[#8D9AA3] pointer-events-none">
               {startIcon}
             </div>
           )}
@@ -57,43 +57,36 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={hasError}
             aria-describedby={hasError ? `${inputId}-error` : helperText ? `${inputId}-helper` : undefined}
             className={cn(
-              'h-11 rounded-lg bg-[#0E1C38] text-[#F4F6FA] text-sm placeholder:text-[#64748B] transition-all duration-200 border outline-none',
+              'h-11 rounded-lg text-sm transition-all duration-200 border outline-none font-body',
               startIcon ? 'pl-10' : 'pl-3.5',
               endIcon ? 'pr-10' : 'pr-3.5',
               fullWidth ? 'w-full' : 'w-auto',
-              hasError
-                ? 'border-[#FF3B56] focus:border-[#FF3B56] focus:ring-2 focus:ring-[#FF3B56]/30'
-                : variant === 'gold-accent'
-                ? 'border-[#D9BD83]/40 focus:border-[#D9BD83] focus:ring-2 focus:ring-[#D9BD83]/30'
-                : 'border-[#1C3364] focus:border-[#267BFF] focus:ring-2 focus:ring-[#267BFF]/30',
-              disabled && 'opacity-50 cursor-not-allowed bg-[#081329]',
+              variant === 'light'
+                ? 'bg-[#F6F5F1] text-[#171B1E] placeholder:text-[#68737D]/60 border-[#D9DEE2] focus:border-[#C6AD7B] focus:ring-2 focus:ring-[#C6AD7B]/20'
+                : variant === 'silver'
+                ? 'bg-[#D9DEE2] text-[#171B1E] placeholder:text-[#68737D]/60 border-[#CAD0D5] focus:border-[#C6AD7B] focus:ring-2 focus:ring-[#C6AD7B]/20'
+                : 'bg-[#252A2E] text-[#F6F5F1] placeholder:text-[#8D9AA3]/60 border-[#363C42] focus:border-[#C6AD7B] focus:ring-2 focus:ring-[#C6AD7B]/20',
+              hasError && 'border-[#C25B5B] focus:border-[#C25B5B] focus:ring-2 focus:ring-[#C25B5B]/25',
+              disabled && 'opacity-50 cursor-not-allowed bg-[#171B1E]',
               className
             )}
             {...props}
           />
 
           {endIcon && (
-            <div className="absolute right-3.5 flex items-center justify-center text-[#94A3B8]">
+            <div className="absolute right-3.5 flex items-center justify-center text-[#8D9AA3]">
               {endIcon}
             </div>
           )}
         </div>
 
         {hasError && (
-          <p id={`${inputId}-error`} className="text-xs text-[#FF3B56] flex items-center gap-1 font-medium">
-            <svg className="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <p id={`${inputId}-error`} className="text-xs text-[#C25B5B] font-medium mt-0.5">
             {errorText}
           </p>
         )}
-
         {!hasError && helperText && (
-          <p id={`${inputId}-helper`} className="text-xs text-[#94A3B8]">
+          <p id={`${inputId}-helper`} className="text-xs text-[#8D9AA3] mt-0.5">
             {helperText}
           </p>
         )}
@@ -103,4 +96,3 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 )
 
 Input.displayName = 'Input'
-

@@ -38,7 +38,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       return [...leftRange, '...', totalPages]
     }
 
-    if (shouldShowLeftDots && !shouldShowRightDots) {
+    if (!shouldShowLeftDots && !shouldShowRightDots) {
       const rightItemCount = 3 + 2 * siblingCount
       const rightRange = Array.from({ length: rightItemCount }, (_, i) => totalPages - rightItemCount + i + 1)
       return [1, '...', ...rightRange]
@@ -64,7 +64,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         disabled={currentPage <= 1}
         onClick={() => onPageChange(currentPage - 1)}
         aria-label="Previous Page"
-        className="w-9 h-9 rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-[#F4F6FA] hover:bg-[#0E1C38] border border-[#1C3364] transition-colors disabled:opacity-40 disabled:pointer-events-none"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#252A2E] border border-[#363C42] transition-colors disabled:opacity-40 disabled:pointer-events-none"
       >
         <ChevronLeft className="w-4 h-4" />
       </button>
@@ -74,29 +74,28 @@ export const Pagination: React.FC<PaginationProps> = ({
         {pages.map((page, idx) => {
           if (page === '...') {
             return (
-              <span key={`dots-${idx}`} className="w-8 text-center text-xs text-[#64748B]">
+              <span key={`dots-${idx}`} className="w-8 text-center text-xs text-[#4D565E]">
                 ...
               </span>
             )
           }
 
-          const pageNum = Number(page)
-          const isCurrent = pageNum === currentPage
+          const isCurrent = page === currentPage
 
           return (
             <button
-              key={pageNum}
+              key={page}
               type="button"
-              onClick={() => onPageChange(pageNum)}
+              onClick={() => onPageChange(page as number)}
               aria-current={isCurrent ? 'page' : undefined}
               className={cn(
-                'w-9 h-9 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 border flex items-center justify-center',
+                'w-9 h-9 rounded-lg text-xs font-semibold flex items-center justify-center transition-all',
                 isCurrent
-                  ? 'bg-[#267BFF] text-white border-[#267BFF] shadow-[0_0_12px_rgba(38,123,255,0.4)]'
-                  : 'bg-[#0E1C38] text-[#94A3B8] border-[#1C3364] hover:text-[#F4F6FA] hover:bg-[#15274D]'
+                  ? 'bg-[#C6AD7B] text-[#171B1E] font-bold border border-[#D4BE8D] shadow-sm'
+                  : 'text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#252A2E] border border-transparent'
               )}
             >
-              {pageNum}
+              {page}
             </button>
           )
         })}
@@ -108,11 +107,10 @@ export const Pagination: React.FC<PaginationProps> = ({
         disabled={currentPage >= totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         aria-label="Next Page"
-        className="w-9 h-9 rounded-lg flex items-center justify-center text-[#94A3B8] hover:text-[#F4F6FA] hover:bg-[#0E1C38] border border-[#1C3364] transition-colors disabled:opacity-40 disabled:pointer-events-none"
+        className="w-9 h-9 rounded-lg flex items-center justify-center text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#252A2E] border border-[#363C42] transition-colors disabled:opacity-40 disabled:pointer-events-none"
       >
         <ChevronRight className="w-4 h-4" />
       </button>
     </nav>
   )
 }
-

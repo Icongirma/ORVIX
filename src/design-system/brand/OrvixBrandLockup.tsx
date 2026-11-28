@@ -1,12 +1,12 @@
 import React from 'react'
-import { OrvixLogo, type OrvixLogoProps } from './OrvixLogo'
-import { OrvixWordmark, type OrvixWordmarkProps } from './OrvixWordmark'
+import { OrvixLogo, type OrvixLogoProps, type LogoVariant } from './OrvixLogo'
+import { OrvixWordmark, type OrvixWordmarkProps, type WordmarkVariant } from './OrvixWordmark'
 import { cn } from '../utils/cn'
 
 export interface OrvixBrandLockupProps extends React.HTMLAttributes<HTMLDivElement> {
   layout?: 'horizontal' | 'vertical' | 'mark-only' | 'wordmark-only'
   size?: 'sm' | 'md' | 'lg' | 'xl'
-  variant?: 'primary' | 'gold' | 'blue' | 'monochrome' | 'dark'
+  variant?: LogoVariant | WordmarkVariant
   withTagline?: boolean
   taglineText?: string
   glow?: boolean
@@ -18,7 +18,7 @@ export const OrvixBrandLockup: React.FC<OrvixBrandLockupProps> = ({
   size = 'md',
   variant = 'primary',
   withTagline = false,
-  taglineText = 'SPORTS & ENTERTAINMENT',
+  taglineText = 'PLAY. COMPETE. DISCOVER.',
   glow = false,
   className,
   ...props
@@ -40,7 +40,7 @@ export const OrvixBrandLockup: React.FC<OrvixBrandLockupProps> = ({
   if (layout === 'mark-only') {
     return (
       <div className={cn('inline-flex items-center justify-center', className)} {...props}>
-        <OrvixLogo size={logoSizeMap[size]} variant={variant} glow={glow} />
+        <OrvixLogo size={logoSizeMap[size]} variant={variant as LogoVariant} glow={glow} />
       </div>
     )
   }
@@ -50,7 +50,7 @@ export const OrvixBrandLockup: React.FC<OrvixBrandLockupProps> = ({
       <div className={cn('inline-flex items-center justify-center', className)} {...props}>
         <OrvixWordmark
           size={wordmarkSizeMap[size]}
-          variant={variant}
+          variant={variant as WordmarkVariant}
           withTagline={withTagline}
           taglineText={taglineText}
         />
@@ -61,36 +61,45 @@ export const OrvixBrandLockup: React.FC<OrvixBrandLockupProps> = ({
   if (layout === 'vertical') {
     return (
       <div
-        className={cn('inline-flex flex-col items-center justify-center gap-3 text-center', className)}
+        className={cn('inline-flex flex-col items-center justify-center gap-3 text-center min-w-0 max-w-full', className)}
         role="img"
         aria-label="ORVIX Brand Lockup"
         {...props}
       >
-        <OrvixLogo size={logoSizeMap[size]} variant={variant} glow={glow} />
+        <OrvixLogo size={logoSizeMap[size]} variant={variant as LogoVariant} glow={glow} className="flex-shrink-0" />
         <OrvixWordmark
           size={wordmarkSizeMap[size]}
-          variant={variant}
+          variant={variant as WordmarkVariant}
           withTagline={withTagline}
           taglineText={taglineText}
+          className="min-w-0"
         />
       </div>
     )
   }
 
   // Horizontal layout (default)
+  const gapMap = {
+    sm: 'gap-2.5',
+    md: 'gap-3 sm:gap-3.5',
+    lg: 'gap-3.5 sm:gap-4',
+    xl: 'gap-4 sm:gap-5',
+  }
+
   return (
     <div
-      className={cn('inline-flex items-center gap-3.5', className)}
+      className={cn('inline-flex items-center min-w-0 max-w-full', gapMap[size], className)}
       role="img"
       aria-label="ORVIX Brand Lockup"
       {...props}
     >
-      <OrvixLogo size={logoSizeMap[size]} variant={variant} glow={glow} />
+      <OrvixLogo size={logoSizeMap[size]} variant={variant as LogoVariant} glow={glow} className="flex-shrink-0" />
       <OrvixWordmark
         size={wordmarkSizeMap[size]}
-        variant={variant}
+        variant={variant as WordmarkVariant}
         withTagline={withTagline}
         taglineText={taglineText}
+        className="min-w-0"
       />
     </div>
   )

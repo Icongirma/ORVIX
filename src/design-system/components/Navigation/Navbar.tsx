@@ -8,13 +8,13 @@ export interface NavItem {
   label: string
   href?: string
   badge?: string
-  badgeVariant?: 'live' | 'gold' | 'blue'
+  badgeVariant?: 'live' | 'champagne' | 'steel' | 'silver' | 'coral' | 'gold' | 'blue'
   isActive?: boolean
   onClick?: () => void
 }
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
-  brandVariant?: 'primary' | 'gold' | 'blue' | 'monochrome'
+  brandVariant?: 'primary' | 'champagne' | 'steel' | 'silver' | 'graphite' | 'monochrome' | 'dark'
   items?: NavItem[]
   actions?: React.ReactNode
   activeId?: string
@@ -45,11 +45,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       className={cn(
-        'w-full z-40 transition-all duration-200 border-b border-[#1C3364]/70',
+        'w-full z-40 transition-all duration-200 border-b border-[#363C42]/80',
         sticky && 'sticky top-0',
-        transparent
-          ? 'bg-transparent'
-          : 'bg-[#081329]/90 backdrop-blur-md',
+        transparent ? 'bg-transparent' : 'bg-[#171B1E]/95 backdrop-blur-md',
         className
       )}
       {...props}
@@ -78,8 +76,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={cn(
                     'px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 select-none font-body',
                     isCurrent
-                      ? 'text-[#F4F6FA] bg-[#15274D] border border-[#267BFF]/40 shadow-[0_0_15px_rgba(38,123,255,0.2)]'
-                      : 'text-[#94A3B8] hover:text-[#F4F6FA] hover:bg-[#0E1C38]'
+                      ? 'text-[#F6F5F1] bg-[#2E343A] border border-[#C6AD7B]/40 shadow-sm'
+                      : 'text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#252A2E]'
                   )}
                 >
                   <span>{item.label}</span>
@@ -87,11 +85,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span
                       className={cn(
                         'text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full',
-                        item.badgeVariant === 'live'
-                          ? 'bg-[#FF3B56]/20 text-[#FF3B56] border border-[#FF3B56]/40'
-                          : item.badgeVariant === 'gold'
-                          ? 'bg-[#D9BD83]/20 text-[#D9BD83] border border-[#D9BD83]/40'
-                          : 'bg-[#267BFF]/20 text-[#267BFF] border border-[#267BFF]/40'
+                        item.badgeVariant === 'live' || item.badgeVariant === 'champagne'
+                          ? 'bg-[#C6AD7B]/20 text-[#C6AD7B]'
+                          : 'bg-[#8D9AA3]/20 text-[#8D9AA3]'
                       )}
                     >
                       {item.badge}
@@ -102,64 +98,54 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </div>
 
-          {/* Action Items (Right) */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Action Area */}
+          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
             {actions}
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <div className="flex items-center sm:hidden gap-2">
-            {actions && <div className="sm:hidden">{actions}</div>}
+          {/* Mobile Menu Button */}
+          <div className="flex md:hidden items-center gap-2">
+            {actions}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              className="p-2 rounded-lg bg-[#0E1C38] text-[#F4F6FA] border border-[#1C3364] hover:bg-[#15274D] transition-colors"
+              className="p-2 rounded-lg text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#252A2E] focus:outline-none"
+              aria-label="Toggle Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#1C3364] bg-[#081329] px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="flex flex-col gap-1.5">
-            {items.map((item) => {
-              const isCurrent = activeId ? item.id === activeId : item.isActive
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleItemClick(item)}
-                  className={cn(
-                    'w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-between',
-                    isCurrent
-                      ? 'text-[#F4F6FA] bg-[#15274D] border border-[#267BFF]/40 font-semibold'
-                      : 'text-[#94A3B8] hover:text-[#F4F6FA] hover:bg-[#0E1C38]'
-                  )}
-                >
-                  <span>{item.label}</span>
-                  {item.badge && (
-                    <span
-                      className={cn(
-                        'text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full',
-                        item.badgeVariant === 'live'
-                          ? 'bg-[#FF3B56]/20 text-[#FF3B56] border border-[#FF3B56]/40'
-                          : 'bg-[#267BFF]/20 text-[#267BFF]'
-                      )}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
-                </button>
-              )
-            })}
-          </div>
+        <div className="md:hidden border-t border-[#363C42] bg-[#171B1E] px-4 pt-3 pb-5 space-y-2">
+          {items.map((item) => {
+            const isCurrent = activeId ? item.id === activeId : item.isActive
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleItemClick(item)}
+                className={cn(
+                  'w-full text-left px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center justify-between font-body',
+                  isCurrent
+                    ? 'text-[#F6F5F1] bg-[#2E343A] border border-[#C6AD7B]/40'
+                    : 'text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#252A2E]'
+                )}
+              >
+                <span>{item.label}</span>
+                {item.badge && (
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#C6AD7B]/20 text-[#C6AD7B]">
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
       )}
     </nav>
   )
 }
-
