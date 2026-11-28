@@ -24,6 +24,10 @@ import {
   Zap,
   Check,
   ChevronDown,
+  Compass,
+  Flame,
+  Gauge,
+  X,
 } from 'lucide-react'
 import {
   Card,
@@ -130,7 +134,7 @@ export interface LeagueItem {
   teamsCount: number
   activeSeason: string
   description: string
-  badgeVariant: 'blue' | 'gold' | 'neutral'
+  badgeVariant: 'champagne' | 'steel' | 'neutral'
 }
 
 export interface TeamItem {
@@ -208,14 +212,14 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
     }
   }, [selectedMatch, selectedTeam])
 
-  // Sports Categories List
+  // Sports Categories List with category icons
   const sportsCategories = [
-    { id: 'all' as SportType, label: 'All Sports', count: 24 },
-    { id: 'football' as SportType, label: 'Football', count: 9 },
-    { id: 'basketball' as SportType, label: 'Basketball', count: 6 },
-    { id: 'motorsport' as SportType, label: 'Motorsport', count: 4 },
-    { id: 'tennis' as SportType, label: 'Tennis', count: 3 },
-    { id: 'esports' as SportType, label: 'Esports', count: 2 },
+    { id: 'all' as SportType, label: 'All Sports', count: 24, icon: Trophy },
+    { id: 'football' as SportType, label: 'Football', count: 9, icon: Activity },
+    { id: 'basketball' as SportType, label: 'Basketball', count: 6, icon: Flame },
+    { id: 'motorsport' as SportType, label: 'Motorsport', count: 4, icon: Gauge },
+    { id: 'tennis' as SportType, label: 'Tennis', count: 3, icon: Zap },
+    { id: 'esports' as SportType, label: 'Esports', count: 2, icon: Layers },
   ]
 
   // Mock Leagues Data
@@ -230,7 +234,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamsCount: 32,
       activeSeason: '2025/2026',
       description: 'The pinnacle of European club football featuring the champions and top teams across Europe.',
-      badgeVariant: 'gold',
+      badgeVariant: 'champagne',
     },
     {
       id: 'epl',
@@ -242,7 +246,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamsCount: 20,
       activeSeason: '2025/2026',
       description: 'The top tier of English football, known for intensity, global viewership, and fast transitions.',
-      badgeVariant: 'blue',
+      badgeVariant: 'steel',
     },
     {
       id: 'laliga',
@@ -266,7 +270,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamsCount: 30,
       activeSeason: '2025/2026',
       description: 'Premier professional basketball league showcasing the world’s most dynamic athletic basketball stars.',
-      badgeVariant: 'gold',
+      badgeVariant: 'champagne',
     },
     {
       id: 'euroleague',
@@ -278,7 +282,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamsCount: 18,
       activeSeason: '2025/2026',
       description: 'Top-tier European professional club basketball tournament featuring strategic team play.',
-      badgeVariant: 'blue',
+      badgeVariant: 'steel',
     },
     {
       id: 'f1',
@@ -290,7 +294,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamsCount: 10,
       activeSeason: '2026 Season',
       description: 'The premier single-seater auto racing championship with multi-cam synchronized pitwall telemetry.',
-      badgeVariant: 'gold',
+      badgeVariant: 'champagne',
     },
     {
       id: 'atp',
@@ -314,7 +318,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamsCount: 16,
       activeSeason: 'Spring Split 2026',
       description: 'High-octane tactical esports championship streamed in 120 FPS with spectator director feeds.',
-      badgeVariant: 'blue',
+      badgeVariant: 'steel',
     },
   ]
 
@@ -334,7 +338,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       seasonRank: '#1 League / UCL Semi-Finalist',
       keyStat: '2.84 Goals/Game',
       statLabel: 'Scoring Rate',
-      accentColor: '#D9BD83',
+      accentColor: '#C6AD7B',
       roster: [
         { name: 'Thibaut Courtois', position: 'Goalkeeper', number: 1 },
         { name: 'Dani Carvajal', position: 'Defender', number: 2 },
@@ -359,7 +363,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       seasonRank: '#1 Bundesliga / UCL Semi-Finalist',
       keyStat: '64.2% Possession',
       statLabel: 'Ball Control',
-      accentColor: '#FF3B56',
+      accentColor: '#E47D5B',
       roster: [
         { name: 'Manuel Neuer', position: 'Goalkeeper', number: 1 },
         { name: 'Dayot Upamecano', position: 'Defender', number: 2 },
@@ -383,7 +387,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       seasonRank: '#1 Premier League',
       keyStat: '91.8% Passing',
       statLabel: 'Accuracy Rate',
-      accentColor: '#267BFF',
+      accentColor: '#8D9AA3',
       roster: [
         { name: 'Ederson', position: 'Goalkeeper', number: 31 },
         { name: 'Rúben Dias', position: 'Defender', number: 3 },
@@ -407,7 +411,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       seasonRank: '#1 Eastern Conference',
       keyStat: '118.4 PPG',
       statLabel: 'Offensive Rating',
-      accentColor: '#00E599',
+      accentColor: '#729B79',
       roster: [
         { name: 'Jayson Tatum', position: 'Forward', number: 0 },
         { name: 'Jaylen Brown', position: 'Guard', number: 7 },
@@ -430,7 +434,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       seasonRank: '#2 Western Conference',
       keyStat: '39.8% 3PT',
       statLabel: 'Perimeter Accuracy',
-      accentColor: '#D9BD83',
+      accentColor: '#C6AD7B',
       roster: [
         { name: 'Stephen Curry', position: 'Guard', number: 30 },
         { name: 'Klay Thompson', position: 'Guard', number: 11 },
@@ -453,7 +457,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       seasonRank: '#1 Constructors Championship',
       keyStat: '1:10.241',
       statLabel: 'Monaco Pole Time',
-      accentColor: '#267BFF',
+      accentColor: '#8D9AA3',
       roster: [
         { name: 'Max Verstappen', position: 'Lead Driver', number: 1 },
         { name: 'Sergio Pérez', position: 'Second Driver', number: 11 },
@@ -475,14 +479,14 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
         name: 'Madrid FC',
         shortName: 'MAD',
         score: 3,
-        logoColor: '#D9BD83',
+        logoColor: '#C6AD7B',
         scorers: ['Vinícius Jr 34’', 'J. Bellingham 68’', 'K. Mbappé 89’'],
       },
       teamAway: {
         name: 'Bayern Munich',
         shortName: 'BAY',
         score: 1,
-        logoColor: '#FF3B56',
+        logoColor: '#E47D5B',
         scorers: ['H. Kane 52’'],
       },
       status: 'COMPLETED',
@@ -546,19 +550,19 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamHome: {
         name: 'Bayern Munich',
         shortName: 'BAY',
-        logoColor: '#FF3B56',
+        logoColor: '#E47D5B',
       },
       teamAway: {
         name: 'Madrid FC',
         shortName: 'MAD',
-        logoColor: '#D9BD83',
+        logoColor: '#C6AD7B',
       },
       status: 'UPCOMING',
       statusText: 'Today 20:45 CET',
       startTime: 'Today 20:45 CET',
       venue: 'Allianz Arena',
       city: 'Munich',
-      broadcastBadge: '4K 60FPS LIVE ARENA',
+      broadcastBadge: '4K 60FPS DEMO ARENA',
       formationHome: '4-2-3-1 High Press',
       formationAway: '4-3-3 Counter-Attack',
       headToHead: {
@@ -580,13 +584,13 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
         name: 'Max Verstappen (Red Bull)',
         shortName: 'VER',
         score: 1, // P1
-        logoColor: '#267BFF',
+        logoColor: '#8D9AA3',
       },
       teamAway: {
         name: 'Lando Norris (McLaren)',
         shortName: 'NOR',
         score: 2, // P2
-        logoColor: '#FF8A00',
+        logoColor: '#C6AD7B',
       },
       status: 'LIVE',
       statusText: 'Lap 54 / 78',
@@ -615,13 +619,13 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
         name: 'Metro Titans',
         shortName: 'MTN',
         score: 112,
-        logoColor: '#00E599',
+        logoColor: '#729B79',
       },
       teamAway: {
         name: 'Pacific Stars',
         shortName: 'PST',
         score: 108,
-        logoColor: '#D9BD83',
+        logoColor: '#C6AD7B',
       },
       status: 'COMPLETED',
       statusText: 'Final / OT',
@@ -663,12 +667,12 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamHome: {
         name: 'London Thunder',
         shortName: 'LTH',
-        logoColor: '#267BFF',
+        logoColor: '#8D9AA3',
       },
       teamAway: {
         name: 'Pacific Stars',
         shortName: 'PST',
-        logoColor: '#D9BD83',
+        logoColor: '#C6AD7B',
       },
       status: 'UPCOMING',
       statusText: 'Tomorrow 02:00 CET',
@@ -688,12 +692,12 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       teamHome: {
         name: 'Carlos Alcaraz',
         shortName: 'ALC',
-        logoColor: '#D9BD83',
+        logoColor: '#C6AD7B',
       },
       teamAway: {
         name: 'Jannik Sinner',
         shortName: 'SIN',
-        logoColor: '#267BFF',
+        logoColor: '#8D9AA3',
       },
       status: 'UPCOMING',
       statusText: 'Saturday 15:30 CET',
@@ -775,44 +779,44 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
   }, [activeSport, searchQuery])
 
   return (
-    <div className="space-y-8 sm:space-y-10 min-w-0">
+    <div className="space-y-6 sm:space-y-8 min-w-0 pb-20 lg:pb-12 text-[#F6F5F1]">
       {/* =========================================================================
           DISCLAIMER & SIMULATION NOTICE BANNER
          ========================================================================= */}
-      <div className="p-3 xs:p-3.5 rounded-xl bg-[#0E1C38]/90 border border-[#1C3364] flex items-center justify-between gap-3 text-xs text-[#94A3B8] min-w-0 shadow-sm">
+      <div className="p-3 xs:p-3.5 rounded-xl bg-[#252A2E] border border-[#363C42] flex items-center justify-between gap-3 text-xs text-[#8D9AA3] min-w-0 shadow-sm">
         <div className="flex items-center gap-2.5 min-w-0">
-          <span className="p-1.5 rounded-lg bg-[#081329] border border-[#1C3364] text-[#D9BD83] flex-shrink-0">
+          <span className="p-1.5 rounded-lg bg-[#171B1E] border border-[#363C42] text-[#C6AD7B] flex-shrink-0">
             <Info className="w-4 h-4" />
           </span>
-          <p className="leading-relaxed break-words text-[11px] xs:text-xs">
-            <strong className="text-[#F4F6FA] font-display">ORVIX Sports Center (Informational Preview):</strong> All leagues, rosters, match fixtures, and telemetry statistics are simulated demonstration data. No betting, wagers, or gambling functionality is present.
+          <p className="leading-relaxed break-words text-[11px] xs:text-xs text-[#8D9AA3]">
+            <strong className="text-[#F6F5F1] font-display font-bold">ORVIX Sports Center (Simulated Data Preview):</strong> All leagues, squad rosters, fixture telemetry, and final scores are simulated demonstration data. Non-monetary, informational preview — no betting, wagering, or real-money gaming.
           </p>
         </div>
-        <Badge variant="neutral" size="sm" className="flex-shrink-0 hidden md:inline-flex">
+        <Badge variant="champagne" size="sm" className="flex-shrink-0 hidden md:inline-flex">
           SIMULATED TELEMETRY
         </Badge>
       </div>
 
       {/* =========================================================================
-          SECTION 1: SPORTS CENTER HERO & CATEGORY NAVIGATION
+          SECTION 1: SPORTS CENTER HEADER & CATEGORY NAVIGATION
          ========================================================================= */}
       <div className="space-y-5 min-w-0">
-        {/* Header Title & Description */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#1C3364]/70 min-w-0">
+        {/* Header Title & Actions */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#363C42] min-w-0">
           <div className="space-y-1.5 min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2.5 min-w-0">
-              <span className="p-2 rounded-lg bg-[#0E1C38] border border-[#1C3364] text-[#267BFF] flex-shrink-0">
+              <span className="p-2 rounded-lg bg-[#252A2E] border border-[#363C42] text-[#C6AD7B] flex-shrink-0 shadow-sm">
                 <Trophy className="w-5 h-5" />
               </span>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-[#F4F6FA] tracking-tight break-words">
-                Sports Center &amp; Broadcast Telemetry
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-[#F6F5F1] tracking-tight break-words">
+                Sports Center
               </h1>
-              <Badge variant="live" size="sm" pulse className="flex-shrink-0">
-                LIVE HUB
+              <Badge variant="champagne" size="sm" className="flex-shrink-0">
+                DEMO ARENA
               </Badge>
             </div>
-            <p className="text-xs sm:text-sm text-[#94A3B8] max-w-2xl leading-relaxed break-words">
-              Explore simulated football, basketball, motorsport, and championship sports. Inspect simulated match telemetry, sample league standings, and sample team rosters.
+            <p className="text-xs sm:text-sm text-[#8D9AA3] max-w-2xl leading-relaxed break-words">
+              Explore simulated football, basketball, motorsport, tennis, and esports. Inspect simulated match telemetry, sample league standings, and sample squad rosters.
             </p>
           </div>
 
@@ -820,18 +824,17 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
             <Button
               size="sm"
               variant="secondary"
-              leftIcon={<Activity className="w-4 h-4 text-[#267BFF]" />}
+              leftIcon={<Activity className="w-4 h-4 text-[#C6AD7B]" />}
               onClick={() => {
                 setActiveSport('motorsport')
                 setActiveTab('fixtures')
               }}
             >
-              Live Telemetry
+              Simulated Telemetry
             </Button>
             <Button
               size="sm"
               variant="primary"
-              glow
               leftIcon={<Play className="w-4 h-4" />}
               onClick={() => {
                 const liveMatch = matchesData.find((m) => m.status === 'LIVE')
@@ -847,23 +850,25 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
         <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-1 max-w-full">
           {sportsCategories.map((cat) => {
             const isActive = activeSport === cat.id
+            const CategoryIcon = cat.icon
             return (
               <button
                 key={cat.id}
                 type="button"
                 onClick={() => handleSportChange(cat.id)}
                 className={cn(
-                  'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-display font-semibold transition-all flex items-center gap-2 whitespace-nowrap select-none flex-shrink-0 border',
+                  'px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-display font-semibold transition-all flex items-center gap-2 whitespace-nowrap select-none flex-shrink-0 border',
                   isActive
-                    ? 'bg-[#267BFF] text-white border-[#267BFF] shadow-[0_0_12px_rgba(38,123,255,0.35)]'
-                    : 'bg-[#0E1C38] text-[#94A3B8] border-[#1C3364] hover:text-[#F4F6FA] hover:bg-[#15274D]'
+                    ? 'bg-[#C6AD7B] text-[#171B1E] border-[#C6AD7B] shadow-sm font-bold'
+                    : 'bg-[#252A2E] text-[#8D9AA3] border-[#363C42] hover:text-[#F6F5F1] hover:bg-[#2C3237] hover:border-[#424950]'
                 )}
               >
+                <CategoryIcon className={cn('w-4 h-4 flex-shrink-0', isActive ? 'text-[#171B1E]' : 'text-[#8D9AA3]')} />
                 <span>{cat.label}</span>
                 <span
                   className={cn(
-                    'text-[10px] px-1.5 py-0.5 rounded-full font-mono-stats',
-                    isActive ? 'bg-white/20 text-white' : 'bg-[#081329] text-[#64748B]'
+                    'text-[10px] px-1.5 py-0.5 rounded-full font-mono-stats font-bold',
+                    isActive ? 'bg-[#171B1E]/20 text-[#171B1E]' : 'bg-[#171B1E] text-[#8D9AA3]'
                   )}
                 >
                   {cat.count}
@@ -877,13 +882,13 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       {/* =========================================================================
           SECTION 2: SEARCH, FILTERING & SUB-VIEW TABS
          ========================================================================= */}
-      <div className="p-4 rounded-xl bg-[#081329] border border-[#1C3364] space-y-4 min-w-0">
+      <div className="p-3.5 sm:p-4 rounded-xl bg-[#252A2E] border border-[#363C42] space-y-4 min-w-0 shadow-sm">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 min-w-0">
           {/* Main Sub-Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 lg:pb-0 max-w-full">
             {[
-              { id: 'fixtures' as SportsCenterTab, label: 'Upcoming & Live Fixtures', icon: Calendar },
-              { id: 'results' as SportsCenterTab, label: 'Completed Results & Telemetry', icon: CheckCircle2 },
+              { id: 'fixtures' as SportsCenterTab, label: 'Upcoming Fixtures', icon: Calendar },
+              { id: 'results' as SportsCenterTab, label: 'Completed Results', icon: CheckCircle2 },
               { id: 'leagues' as SportsCenterTab, label: 'Leagues & Tournaments', icon: Award },
               { id: 'teams' as SportsCenterTab, label: 'Teams & Rosters', icon: Users },
             ].map((tab) => {
@@ -895,13 +900,13 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    'px-3 py-2 rounded-lg text-xs font-display font-medium transition-colors flex items-center gap-1.5 whitespace-nowrap flex-shrink-0',
+                    'px-3.5 py-2 rounded-lg text-xs font-display font-medium transition-colors flex items-center gap-2 whitespace-nowrap flex-shrink-0 border',
                     isSelected
-                      ? 'bg-[#15274D] text-[#F4F6FA] font-bold border border-[#267BFF]/50 shadow-sm'
-                      : 'text-[#94A3B8] hover:text-[#F4F6FA] hover:bg-[#0E1C38]'
+                      ? 'bg-[#171B1E] text-[#F6F5F1] font-bold border-[#C6AD7B]/70 shadow-sm'
+                      : 'border-transparent text-[#8D9AA3] hover:text-[#F6F5F1] hover:bg-[#2C3237]'
                   )}
                 >
-                  <Icon className="w-3.5 h-3.5 flex-shrink-0" />
+                  <Icon className={cn('w-3.5 h-3.5 flex-shrink-0', isSelected ? 'text-[#C6AD7B]' : 'text-[#8D9AA3]')} />
                   <span>{tab.label}</span>
                 </button>
               )
@@ -914,7 +919,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onClear={() => setSearchQuery('')}
-              placeholder="Search match, team, league..."
+              placeholder="Search sports, teams, leagues..."
               fullWidth
             />
           </div>
@@ -926,22 +931,24 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
          ========================================================================= */}
       {(activeTab === 'fixtures' || activeTab === 'results') && (
         <div className="space-y-4 min-w-0">
-          <div className="flex items-center justify-between pb-1 min-w-0">
-            <h3 className="text-base sm:text-lg font-bold font-display text-white tracking-tight flex items-center gap-2 truncate">
-              {activeTab === 'fixtures' ? 'Simulated & Scheduled Fixtures' : 'Simulated Final Scores & Telemetry'}
-              <Badge variant="blue" size="sm" className="hidden sm:inline-flex">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-1 min-w-0">
+            <div className="flex items-center gap-2.5 truncate">
+              <h3 className="text-base sm:text-lg font-bold font-display text-[#F6F5F1] tracking-tight truncate">
+                {activeTab === 'fixtures' ? 'Simulated & Scheduled Fixtures' : 'Simulated Final Scores & Telemetry'}
+              </h3>
+              <Badge variant="steel" size="sm" className="hidden sm:inline-flex">
                 {filteredMatches.length} Available
               </Badge>
-            </h3>
+            </div>
 
             {/* League Dropdown Filter */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-[#94A3B8] hidden md:inline">Competition:</span>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <span className="text-xs text-[#8D9AA3] hidden md:inline">Competition:</span>
               <select
                 aria-label="Filter by League"
                 value={selectedLeagueFilter}
                 onChange={(e) => setSelectedLeagueFilter(e.target.value)}
-                className="bg-[#0E1C38] border border-[#1C3364] text-xs text-[#F4F6FA] rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#267BFF]"
+                className="bg-[#252A2E] border border-[#363C42] text-xs text-[#F6F5F1] rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#C6AD7B] transition-colors"
               >
                 <option value="all">
                   {activeSport === 'all' ? 'All Competitions' : `All ${activeSport.toUpperCase()} Competitions`}
@@ -957,9 +964,9 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
 
           {filteredMatches.length === 0 ? (
             <Card variant="standard" className="p-8 text-center space-y-3">
-              <Search className="w-8 h-8 text-[#64748B] mx-auto" />
-              <h4 className="text-base font-bold font-display text-white">No matches found</h4>
-              <p className="text-xs text-[#94A3B8] max-w-sm mx-auto">
+              <Search className="w-8 h-8 text-[#68737D] mx-auto" />
+              <h4 className="text-base font-bold font-display text-[#F6F5F1]">No matches found</h4>
+              <p className="text-xs text-[#8D9AA3] max-w-sm mx-auto">
                 No fixtures or results matched your search criteria. Try selecting &quot;All Sports&quot; or clearing your filter.
               </p>
               <Button size="sm" variant="outline" onClick={() => { setActiveSport('all'); setSearchQuery(''); setSelectedLeagueFilter('all') }}>
@@ -978,21 +985,21 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                     key={match.id}
                     variant="standard"
                     className={cn(
-                      'p-4 sm:p-5 transition-all hover:border-[#267BFF]/60 cursor-pointer min-w-0',
-                      isLive && 'border-[#267BFF]/70 bg-[#0A1428]'
+                      'p-4 sm:p-5 transition-all hover:border-[#C6AD7B]/60 cursor-pointer min-w-0 relative',
+                      isLive && 'border-[#C6AD7B]/70 bg-[#252A2E]'
                     )}
                     onClick={() => setSelectedMatch(match)}
                   >
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 min-w-0">
                       {/* Left: Tournament Badge, Venue & Status */}
-                      <div className="space-y-2 min-w-0 flex-1">
+                      <div className="space-y-2.5 min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-[11px] font-bold font-display uppercase tracking-wider text-[#D9BD83]">
+                          <span className="text-[11px] font-bold font-display uppercase tracking-wider text-[#C6AD7B]">
                             {match.leagueName}
                           </span>
-                          <span className="text-xs text-[#64748B]">•</span>
-                          <span className="text-xs text-[#94A3B8] flex items-center gap-1">
-                            <MapPin className="w-3 h-3 text-[#267BFF]" />
+                          <span className="text-xs text-[#68737D]">•</span>
+                          <span className="text-xs text-[#8D9AA3] flex items-center gap-1">
+                            <MapPin className="w-3 h-3 text-[#C6AD7B]" />
                             {match.venue}, {match.city}
                           </span>
                           {isLive && (
@@ -1001,16 +1008,16 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                             </Badge>
                           )}
                           {isCompleted && (
-                            <Badge variant="neutral" size="sm">
+                            <Badge variant="steel" size="sm">
                               {match.statusText}
                             </Badge>
                           )}
                           {!isLive && !isCompleted && (
-                            <span className="text-xs font-mono-stats text-[#267BFF] font-medium">
+                            <span className="text-xs font-mono-stats text-[#D9DEE2] font-semibold">
                               {match.startTime}
                             </span>
                           )}
-                          <Badge variant="blue" size="sm">
+                          <Badge variant="neutral" size="sm">
                             {match.broadcastBadge}
                           </Badge>
                         </div>
@@ -1020,34 +1027,34 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                           {/* Home Team */}
                           <div className="flex items-center gap-2.5 min-w-0 flex-1">
                             <div
-                              className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs text-white flex-shrink-0"
+                              className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs text-[#171B1E] flex-shrink-0 shadow-sm"
                               style={{ backgroundColor: match.teamHome.logoColor }}
                             >
                               {match.teamHome.shortName}
                             </div>
-                            <span className="font-bold text-sm sm:text-base text-white font-display truncate">
+                            <span className="font-bold text-sm sm:text-base text-[#F6F5F1] font-display truncate">
                               {match.teamHome.name}
                             </span>
                           </div>
 
                           {/* Score / VS Center Divider */}
-                          <div className="flex items-center justify-center px-3 py-1 rounded-lg bg-[#040A17] border border-[#1C3364] flex-shrink-0">
+                          <div className="flex items-center justify-center px-3.5 py-1.5 rounded-lg bg-[#171B1E] border border-[#363C42] flex-shrink-0">
                             {match.teamHome.score !== undefined && match.teamAway.score !== undefined ? (
-                              <span className="font-mono-stats font-bold text-base sm:text-lg text-white">
+                              <span className="font-mono-stats font-bold text-base sm:text-lg text-[#F6F5F1] tracking-tight">
                                 {match.teamHome.score} - {match.teamAway.score}
                               </span>
                             ) : (
-                              <span className="font-display font-semibold text-xs text-[#D9BD83]">VS</span>
+                              <span className="font-display font-semibold text-xs text-[#C6AD7B]">VS</span>
                             )}
                           </div>
 
                           {/* Away Team */}
                           <div className="flex items-center gap-2.5 min-w-0 flex-1 justify-start sm:justify-end">
-                            <span className="font-bold text-sm sm:text-base text-white font-display truncate order-2 sm:order-1 text-left sm:text-right">
+                            <span className="font-bold text-sm sm:text-base text-[#F6F5F1] font-display truncate order-2 sm:order-1 text-left sm:text-right">
                               {match.teamAway.name}
                             </span>
                             <div
-                              className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs text-white flex-shrink-0 order-1 sm:order-2"
+                              className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs text-[#171B1E] flex-shrink-0 order-1 sm:order-2 shadow-sm"
                               style={{ backgroundColor: match.teamAway.logoColor }}
                             >
                               {match.teamAway.shortName}
@@ -1057,12 +1064,12 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
 
                         {/* Scorers / Telemetry Preview Snippet */}
                         {match.teamHome.scorers && (
-                          <p className="text-[11px] text-[#94A3B8] font-mono-stats truncate">
+                          <p className="text-[11px] text-[#8D9AA3] font-mono-stats truncate">
                             Goals: {match.teamHome.scorers.join(', ')} | {match.teamAway.scorers?.join(', ')}
                           </p>
                         )}
                         {match.stats?.gapToSecond && (
-                          <p className="text-[11px] text-[#00E599] font-mono-stats">
+                          <p className="text-[11px] text-[#C6AD7B] font-mono-stats">
                             Gap to P2: {match.stats.gapToSecond} • Sector 2 Record Active
                           </p>
                         )}
@@ -1078,7 +1085,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                             size="sm"
                             variant={hasReminder ? 'secondary' : 'outline'}
                             className="flex-1 sm:flex-none"
-                            leftIcon={hasReminder ? <Check className="w-3.5 h-3.5 text-[#00E599]" /> : <Bell className="w-3.5 h-3.5" />}
+                            leftIcon={hasReminder ? <Check className="w-3.5 h-3.5 text-[#C6AD7B]" /> : <Bell className="w-3.5 h-3.5" />}
                             onClick={() => toggleReminder(match.id)}
                           >
                             {hasReminder ? 'Alert Set' : 'Set Alert'}
@@ -1088,12 +1095,11 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                         <Button
                           size="sm"
                           variant={isLive ? 'primary' : 'outline'}
-                          glow={isLive}
                           className="flex-1 sm:flex-none"
                           leftIcon={isLive ? <Play className="w-3.5 h-3.5" /> : <BarChart2 className="w-3.5 h-3.5" />}
                           onClick={() => setSelectedMatch(match)}
                         >
-                          {isLive ? 'Live Arena' : 'Match Details'}
+                          {isLive ? 'Demo Arena' : 'Match Details'}
                         </Button>
                       </div>
                     </div>
@@ -1111,12 +1117,14 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       {activeTab === 'leagues' && (
         <div className="space-y-4 min-w-0">
           <div className="flex items-center justify-between pb-1 min-w-0">
-            <h3 className="text-base sm:text-lg font-bold font-display text-white tracking-tight flex items-center gap-2 truncate">
-              Global Leagues &amp; Sample Tournaments
-              <Badge variant="blue" size="sm">
+            <div className="flex items-center gap-2.5 truncate">
+              <h3 className="text-base sm:text-lg font-bold font-display text-[#F6F5F1] tracking-tight truncate">
+                Global Leagues &amp; Sample Tournaments
+              </h3>
+              <Badge variant="steel" size="sm">
                 {filteredLeagues.length} Active
               </Badge>
-            </h3>
+            </div>
           </div>
 
           <Grid cols={3} gap="md">
@@ -1124,35 +1132,35 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
               <Card
                 key={league.id}
                 variant="standard"
-                className="p-5 flex flex-col justify-between space-y-4 hover:border-[#267BFF]/50 transition-all min-w-0"
+                className="p-5 flex flex-col justify-between space-y-4 hover:border-[#C6AD7B]/50 transition-all min-w-0"
               >
                 <div className="space-y-3 min-w-0">
                   <div className="flex items-center justify-between gap-2">
                     <Badge variant={league.badgeVariant} size="sm">
                       {league.sportLabel}
                     </Badge>
-                    <span className="text-xs text-[#94A3B8] font-mono-stats">{league.activeSeason}</span>
+                    <span className="text-xs text-[#8D9AA3] font-mono-stats">{league.activeSeason}</span>
                   </div>
 
                   <div>
-                    <h4 className="text-base sm:text-lg font-bold font-display text-white break-words">
+                    <h4 className="text-base sm:text-lg font-bold font-display text-[#F6F5F1] break-words">
                       {league.name}
                     </h4>
-                    <span className="text-xs text-[#D9BD83] font-semibold">{league.countryOrRegion}</span>
+                    <span className="text-xs text-[#C6AD7B] font-semibold">{league.countryOrRegion}</span>
                   </div>
 
-                  <p className="text-xs text-[#94A3B8] leading-relaxed break-words">
+                  <p className="text-xs text-[#8D9AA3] leading-relaxed break-words">
                     {league.description}
                   </p>
 
-                  <div className="p-2.5 rounded-lg bg-[#040A17] border border-[#1C3364] flex items-center justify-between text-xs font-mono-stats">
-                    <span className="text-[#94A3B8]">Current Phase</span>
-                    <span className="text-white font-bold">{league.currentPhase}</span>
+                  <div className="p-2.5 rounded-lg bg-[#171B1E] border border-[#363C42] flex items-center justify-between text-xs font-mono-stats">
+                    <span className="text-[#8D9AA3]">Current Phase</span>
+                    <span className="text-[#F6F5F1] font-bold">{league.currentPhase}</span>
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-[#1C3364]/60 flex items-center justify-between text-xs">
-                  <span className="text-[#94A3B8]">{league.teamsCount} Competing Teams</span>
+                <div className="pt-3 border-t border-[#363C42] flex items-center justify-between text-xs">
+                  <span className="text-[#8D9AA3]">{league.teamsCount} Competing Teams</span>
                   <Button
                     size="sm"
                     variant="outline"
@@ -1176,12 +1184,14 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       {activeTab === 'teams' && (
         <div className="space-y-4 min-w-0">
           <div className="flex items-center justify-between pb-1 min-w-0">
-            <h3 className="text-base sm:text-lg font-bold font-display text-white tracking-tight flex items-center gap-2 truncate">
-              Team Profiles &amp; Sample Squad Rosters
-              <Badge variant="blue" size="sm">
+            <div className="flex items-center gap-2.5 truncate">
+              <h3 className="text-base sm:text-lg font-bold font-display text-[#F6F5F1] tracking-tight truncate">
+                Team Profiles &amp; Sample Squad Rosters
+              </h3>
+              <Badge variant="steel" size="sm">
                 {filteredTeams.length} Teams
               </Badge>
-            </h3>
+            </div>
           </div>
 
           <Grid cols={3} gap="md">
@@ -1189,23 +1199,23 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
               <Card
                 key={team.id}
                 variant="standard"
-                className="p-5 flex flex-col justify-between space-y-4 hover:border-[#267BFF]/50 transition-all cursor-pointer min-w-0"
+                className="p-5 flex flex-col justify-between space-y-4 hover:border-[#C6AD7B]/50 transition-all cursor-pointer min-w-0"
                 onClick={() => setSelectedTeam(team)}
               >
                 <div className="space-y-3 min-w-0">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 min-w-0">
+                    <div className="flex items-center gap-2.5 min-w-0">
                       <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs text-white flex-shrink-0"
+                        className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-xs text-[#171B1E] flex-shrink-0 shadow-sm"
                         style={{ backgroundColor: team.accentColor }}
                       >
                         {team.shortName}
                       </div>
                       <div className="min-w-0">
-                        <h4 className="text-sm sm:text-base font-bold font-display text-white truncate">
+                        <h4 className="text-sm sm:text-base font-bold font-display text-[#F6F5F1] truncate">
                           {team.name}
                         </h4>
-                        <p className="text-[10px] text-[#94A3B8] truncate">{team.league}</p>
+                        <p className="text-[10px] text-[#8D9AA3] truncate">{team.league}</p>
                       </div>
                     </div>
                     <Badge variant="neutral" size="sm" className="flex-shrink-0">
@@ -1216,16 +1226,16 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                   {/* Form & Arena */}
                   <div className="space-y-1.5 text-xs">
                     <div className="flex items-center justify-between">
-                      <span className="text-[#94A3B8]">Recent Form:</span>
+                      <span className="text-[#8D9AA3]">Recent Form:</span>
                       <div className="flex items-center gap-1 font-mono-stats font-bold text-[10px]">
                         {team.form.map((res, i) => (
                           <span
                             key={i}
                             className={cn(
-                              'w-4 h-4 rounded flex items-center justify-center text-white',
-                              res === 'W' && 'bg-[#00E599]/80',
-                              res === 'D' && 'bg-[#D9BD83]/80',
-                              res === 'L' && 'bg-[#FF3B56]/80'
+                              'w-4 h-4 rounded flex items-center justify-center font-bold',
+                              res === 'W' && 'bg-[#729B79]/80 text-[#171B1E]',
+                              res === 'D' && 'bg-[#C6AD7B]/80 text-[#171B1E]',
+                              res === 'L' && 'bg-[#E47D5B]/80 text-[#171B1E]'
                             )}
                           >
                             {res}
@@ -1234,26 +1244,26 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-[#94A3B8] truncate">
+                    <div className="flex items-center justify-between text-[#8D9AA3] truncate">
                       <span>Venue:</span>
-                      <span className="text-white truncate max-w-[140px]">{team.venue}</span>
+                      <span className="text-[#F6F5F1] truncate max-w-[140px]">{team.venue}</span>
                     </div>
 
-                    <div className="flex items-center justify-between text-[#94A3B8]">
+                    <div className="flex items-center justify-between text-[#8D9AA3]">
                       <span>Head Coach:</span>
-                      <span className="text-[#F4F6FA] truncate">{team.coach}</span>
+                      <span className="text-[#F6F5F1] truncate">{team.coach}</span>
                     </div>
                   </div>
 
                   {/* Key Stat Box */}
-                  <div className="p-2 rounded-lg bg-[#040A17] border border-[#1C3364] flex items-center justify-between text-xs">
-                    <span className="text-[#94A3B8]">{team.statLabel}</span>
-                    <span className="text-[#00E599] font-mono-stats font-bold">{team.keyStat}</span>
+                  <div className="p-2.5 rounded-lg bg-[#171B1E] border border-[#363C42] flex items-center justify-between text-xs">
+                    <span className="text-[#8D9AA3]">{team.statLabel}</span>
+                    <span className="text-[#C6AD7B] font-mono-stats font-bold">{team.keyStat}</span>
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-[#1C3364]/60 flex items-center justify-between text-xs">
-                  <span className="text-[#D9BD83] font-medium">{team.seasonRank}</span>
+                <div className="pt-3 border-t border-[#363C42] flex items-center justify-between text-xs">
+                  <span className="text-[#C6AD7B] font-semibold">{team.seasonRank}</span>
                   <Button size="sm" variant="outline" onClick={() => setSelectedTeam(team)}>
                     Inspect Roster
                   </Button>
@@ -1269,85 +1279,89 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
          ========================================================================= */}
       {selectedMatch && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 xs:p-3 sm:p-6 bg-[#040A17]/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedMatch.teamHome.name} vs ${selectedMatch.teamAway.name} Match Details`}
+          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 xs:p-3 sm:p-6 bg-[#0B0D0E]/80 backdrop-blur-md overflow-y-auto animate-fade-in"
           onClick={(e) => {
             if (e.target === e.currentTarget) setSelectedMatch(null)
           }}
         >
           <div
-            className="relative w-full max-w-4xl bg-[#081329] border border-[#1C3364] rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh]"
+            className="relative w-full max-w-4xl bg-[#252A2E] border border-[#363C42] rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh] animate-modal-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header Bar */}
-            <div className="p-3.5 xs:p-4 sm:p-5 border-b border-[#1C3364] bg-[#0E1C38] flex items-center justify-between gap-3 min-w-0">
-              <div className="flex items-center gap-2 min-w-0">
+            <div className="p-3.5 xs:p-4 sm:p-5 border-b border-[#363C42] bg-[#1E2327] flex items-center justify-between gap-3 min-w-0">
+              <div className="flex items-center gap-2.5 min-w-0">
                 <button
                   type="button"
                   onClick={() => setSelectedMatch(null)}
-                  className="p-1.5 rounded-lg bg-[#081329] border border-[#1C3364] text-[#94A3B8] hover:text-white transition-colors flex-shrink-0"
+                  className="p-1.5 rounded-lg bg-[#252A2E] border border-[#363C42] text-[#8D9AA3] hover:text-[#F6F5F1] transition-colors flex-shrink-0"
+                  aria-label="Back to matches"
                 >
                   <ArrowLeft className="w-4 h-4" />
                 </button>
                 <div className="min-w-0">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D9BD83] block truncate">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#C6AD7B] block truncate font-display">
                     {selectedMatch.leagueName}
                   </span>
-                  <h3 className="text-xs xs:text-sm sm:text-base font-bold font-display text-white truncate">
+                  <h3 className="text-xs xs:text-sm sm:text-base font-bold font-display text-[#F6F5F1] truncate">
                     {selectedMatch.teamHome.name} vs. {selectedMatch.teamAway.name}
                   </h3>
                 </div>
               </div>
 
               <div className="flex items-center gap-2 flex-shrink-0">
-                <Badge variant={selectedMatch.status === 'LIVE' ? 'live' : 'blue'} size="sm" className="hidden xs:inline-flex">
+                <Badge variant={selectedMatch.status === 'LIVE' ? 'live' : 'steel'} size="sm" className="hidden xs:inline-flex">
                   {selectedMatch.statusText}
                 </Badge>
                 <button
                   type="button"
                   onClick={() => setSelectedMatch(null)}
-                  className="text-[#94A3B8] hover:text-white font-bold p-1 text-sm"
+                  className="text-[#8D9AA3] hover:text-[#F6F5F1] p-1.5 rounded-lg hover:bg-[#252A2E] transition-colors"
                   aria-label="Close match details"
                 >
-                  ✕
+                  <X className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
             {/* Modal Demonstration Disclaimer Notice */}
-            <div className="px-3.5 xs:px-4 py-2 bg-[#040A17] border-b border-[#1C3364] flex items-center justify-between text-[11px] text-[#94A3B8]">
+            <div className="px-3.5 xs:px-4 py-2 bg-[#171B1E] border-b border-[#363C42] flex items-center justify-between text-[11px] text-[#8D9AA3]">
               <span className="flex items-center gap-1.5 min-w-0 truncate">
-                <Info className="w-3.5 h-3.5 text-[#D9BD83] flex-shrink-0" />
+                <Info className="w-3.5 h-3.5 text-[#C6AD7B] flex-shrink-0" />
                 <span className="truncate">Simulated Match Data — Demonstration Dataset</span>
               </span>
               <Badge variant="neutral" size="sm" className="flex-shrink-0 ml-2">DEMO PREVIEW</Badge>
             </div>
 
             {/* Scoreboard Hero Banner */}
-            <div className="p-4 xs:p-5 sm:p-7 bg-gradient-to-b from-[#0E1C38] to-[#081329] border-b border-[#1C3364] text-center space-y-3 sm:space-y-4">
+            <div className="p-4 xs:p-5 sm:p-7 bg-[#1E2327] border-b border-[#363C42] text-center space-y-3 sm:space-y-4">
               <div className="flex items-center justify-around gap-2 sm:gap-4 max-w-2xl mx-auto">
                 {/* Team Home */}
                 <div className="flex flex-col items-center gap-1.5 sm:gap-2 flex-1 min-w-0">
                   <div
-                    className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center font-display font-black text-xs xs:text-sm sm:text-2xl text-white shadow-lg flex-shrink-0"
+                    className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center font-display font-black text-xs xs:text-sm sm:text-2xl text-[#171B1E] shadow-lg flex-shrink-0"
                     style={{ backgroundColor: selectedMatch.teamHome.logoColor }}
                   >
                     {selectedMatch.teamHome.shortName}
                   </div>
-                  <h4 className="font-bold text-xs xs:text-sm sm:text-lg text-white font-display truncate max-w-[85px] xs:max-w-[120px] sm:max-w-none text-center">
+                  <h4 className="font-bold text-xs xs:text-sm sm:text-lg text-[#F6F5F1] font-display truncate max-w-[85px] xs:max-w-[120px] sm:max-w-none text-center">
                     {selectedMatch.teamHome.name}
                   </h4>
                 </div>
 
                 {/* Score or VS Display */}
-                <div className="flex flex-col items-center justify-center px-2.5 xs:px-4 py-1.5 xs:py-2 rounded-xl bg-[#040A17] border border-[#1C3364] shadow-inner flex-shrink-0">
+                <div className="flex flex-col items-center justify-center px-3 xs:px-5 py-2 rounded-xl bg-[#171B1E] border border-[#363C42] shadow-inner flex-shrink-0">
                   {selectedMatch.teamHome.score !== undefined && selectedMatch.teamAway.score !== undefined ? (
-                    <span className="font-mono-stats font-black text-xl xs:text-2xl sm:text-4xl text-white tracking-tight">
+                    <span className="font-mono-stats font-black text-xl xs:text-2xl sm:text-4xl text-[#F6F5F1] tracking-tight">
                       {selectedMatch.teamHome.score} - {selectedMatch.teamAway.score}
                     </span>
                   ) : (
-                    <span className="font-display font-bold text-base xs:text-lg sm:text-xl text-[#D9BD83]">VS</span>
+                    <span className="font-display font-bold text-base xs:text-lg sm:text-xl text-[#C6AD7B]">VS</span>
                   )}
-                  <span className="text-[9px] xs:text-[10px] text-[#94A3B8] mt-0.5 sm:mt-1 font-mono-stats uppercase whitespace-nowrap">
+                  <span className="text-[9px] xs:text-[10px] text-[#C6AD7B] mt-0.5 sm:mt-1 font-mono-stats uppercase whitespace-nowrap font-bold">
                     {selectedMatch.statusText}
                   </span>
                 </div>
@@ -1355,27 +1369,27 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                 {/* Team Away */}
                 <div className="flex flex-col items-center gap-1.5 sm:gap-2 flex-1 min-w-0">
                   <div
-                    className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center font-display font-black text-xs xs:text-sm sm:text-2xl text-white shadow-lg flex-shrink-0"
+                    className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center font-display font-black text-xs xs:text-sm sm:text-2xl text-[#171B1E] shadow-lg flex-shrink-0"
                     style={{ backgroundColor: selectedMatch.teamAway.logoColor }}
                   >
                     {selectedMatch.teamAway.shortName}
                   </div>
-                  <h4 className="font-bold text-xs xs:text-sm sm:text-lg text-white font-display truncate max-w-[85px] xs:max-w-[120px] sm:max-w-none text-center">
+                  <h4 className="font-bold text-xs xs:text-sm sm:text-lg text-[#F6F5F1] font-display truncate max-w-[85px] xs:max-w-[120px] sm:max-w-none text-center">
                     {selectedMatch.teamAway.name}
                   </h4>
                 </div>
               </div>
 
               {/* Venue & Broadcast Specs */}
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs text-[#94A3B8]">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs text-[#8D9AA3]">
                 <span className="break-words">{selectedMatch.venue} ({selectedMatch.city})</span>
-                <span className="hidden xs:inline">•</span>
-                <span className="text-[#267BFF] font-medium">{selectedMatch.broadcastBadge}</span>
+                <span className="hidden xs:inline text-[#68737D]">•</span>
+                <span className="text-[#C6AD7B] font-semibold">{selectedMatch.broadcastBadge}</span>
               </div>
             </div>
 
             {/* Modal Internal Navigation Tabs */}
-            <div className="px-5 border-b border-[#1C3364] bg-[#0E1C38]/60 flex items-center gap-4 overflow-x-auto scrollbar-none">
+            <div className="px-5 border-b border-[#363C42] bg-[#1E2327]/60 flex items-center gap-4 overflow-x-auto scrollbar-none">
               {[
                 { id: 'overview' as const, label: 'Match Overview' },
                 { id: 'stats' as const, label: 'Match Statistics' },
@@ -1389,8 +1403,8 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                   className={cn(
                     'py-3 border-b-2 font-display text-xs font-semibold whitespace-nowrap transition-colors',
                     matchDetailsTab === subTab.id
-                      ? 'border-[#267BFF] text-white'
-                      : 'border-transparent text-[#94A3B8] hover:text-white'
+                      ? 'border-[#C6AD7B] text-[#F6F5F1] font-bold'
+                      : 'border-transparent text-[#8D9AA3] hover:text-[#F6F5F1]'
                   )}
                 >
                   {subTab.label}
@@ -1404,30 +1418,30 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
               {matchDetailsTab === 'overview' && (
                 <div className="space-y-5">
                   <Card variant="standard" className="p-4 space-y-3">
-                    <h5 className="font-bold text-sm text-white font-display flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-[#267BFF]" />
+                    <h5 className="font-bold text-sm text-[#F6F5F1] font-display flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-[#C6AD7B]" />
                       Match Events &amp; Timeline
                     </h5>
 
                     {selectedMatch.teamHome.scorers || selectedMatch.teamAway.scorers ? (
                       <div className="space-y-2 text-xs">
                         {selectedMatch.teamHome.scorers?.map((scorer, i) => (
-                          <div key={i} className="flex items-center gap-2 text-white">
-                            <span className="w-2 h-2 rounded-full bg-[#00E599]" />
+                          <div key={i} className="flex items-center gap-2 text-[#F6F5F1]">
+                            <span className="w-2 h-2 rounded-full bg-[#C6AD7B]" />
                             <span className="font-semibold">{selectedMatch.teamHome.name}:</span>
-                            <span className="text-[#94A3B8] font-mono-stats">{scorer}</span>
+                            <span className="text-[#8D9AA3] font-mono-stats">{scorer}</span>
                           </div>
                         ))}
                         {selectedMatch.teamAway.scorers?.map((scorer, i) => (
-                          <div key={i} className="flex items-center gap-2 text-white">
-                            <span className="w-2 h-2 rounded-full bg-[#FF3B56]" />
+                          <div key={i} className="flex items-center gap-2 text-[#F6F5F1]">
+                            <span className="w-2 h-2 rounded-full bg-[#E47D5B]" />
                             <span className="font-semibold">{selectedMatch.teamAway.name}:</span>
-                            <span className="text-[#94A3B8] font-mono-stats">{scorer}</span>
+                            <span className="text-[#8D9AA3] font-mono-stats">{scorer}</span>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <p className="text-xs text-[#94A3B8]">
+                      <p className="text-xs text-[#8D9AA3]">
                         Kickoff scheduled for {selectedMatch.startTime}. Simulated match telemetry and event timeline will update as simulation unfolds.
                       </p>
                     )}
@@ -1436,15 +1450,15 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                   {/* Formations */}
                   {selectedMatch.formationHome && (
                     <Card variant="standard" className="p-4 space-y-2">
-                      <h5 className="font-bold text-sm text-white font-display">Tactical Formations</h5>
+                      <h5 className="font-bold text-sm text-[#F6F5F1] font-display">Tactical Formations</h5>
                       <div className="grid grid-cols-2 gap-4 text-xs font-mono-stats">
-                        <div className="p-2.5 rounded bg-[#040A17] border border-[#1C3364]">
-                          <span className="text-[#94A3B8] block">{selectedMatch.teamHome.name}</span>
-                          <span className="font-bold text-white">{selectedMatch.formationHome}</span>
+                        <div className="p-2.5 rounded bg-[#171B1E] border border-[#363C42]">
+                          <span className="text-[#8D9AA3] block">{selectedMatch.teamHome.name}</span>
+                          <span className="font-bold text-[#F6F5F1]">{selectedMatch.formationHome}</span>
                         </div>
-                        <div className="p-2.5 rounded bg-[#040A17] border border-[#1C3364]">
-                          <span className="text-[#94A3B8] block">{selectedMatch.teamAway.name}</span>
-                          <span className="font-bold text-white">{selectedMatch.formationAway}</span>
+                        <div className="p-2.5 rounded bg-[#171B1E] border border-[#363C42]">
+                          <span className="text-[#8D9AA3] block">{selectedMatch.teamAway.name}</span>
+                          <span className="font-bold text-[#F6F5F1]">{selectedMatch.formationAway}</span>
                         </div>
                       </div>
                     </Card>
@@ -1459,25 +1473,25 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                     <div className="space-y-4">
                       {/* Possession Bar */}
                       <Card variant="standard" className="p-4 space-y-2">
-                        <div className="flex justify-between text-xs font-mono-stats font-bold text-white">
+                        <div className="flex justify-between text-xs font-mono-stats font-bold text-[#F6F5F1]">
                           <span>{selectedMatch.stats.possession[0]}%</span>
-                          <span className="font-display font-medium text-[#94A3B8]">Ball Possession</span>
+                          <span className="font-display font-medium text-[#8D9AA3]">Ball Possession</span>
                           <span>{selectedMatch.stats.possession[1]}%</span>
                         </div>
-                        <div className="w-full h-2.5 rounded-full bg-[#0E1C38] overflow-hidden flex">
+                        <div className="w-full h-2.5 rounded-full bg-[#171B1E] overflow-hidden flex border border-[#363C42]">
                           <div
-                            className="h-full bg-[#267BFF]"
+                            className="h-full bg-[#C6AD7B]"
                             style={{ width: `${selectedMatch.stats.possession[0]}%` }}
                           />
                           <div
-                            className="h-full bg-[#FF3B56]"
+                            className="h-full bg-[#E47D5B]"
                             style={{ width: `${selectedMatch.stats.possession[1]}%` }}
                           />
                         </div>
                       </Card>
 
                       {/* Stat Breakdown Grid */}
-                      <Card variant="standard" className="p-4 divide-y divide-[#1C3364]/70 text-xs">
+                      <Card variant="standard" className="p-4 divide-y divide-[#363C42] text-xs">
                         {[
                           { label: 'Total Shots', val: selectedMatch.stats.shots },
                           { label: 'Shots on Target', val: selectedMatch.stats.shotsOnTarget },
@@ -1486,9 +1500,9 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                           { label: 'Yellow Cards', val: selectedMatch.stats.yellowCards },
                           { label: 'Pass Accuracy', val: selectedMatch.stats.passAccuracy },
                         ].map((stat, i) => (
-                          <div key={i} className="py-2.5 flex justify-between items-center text-white font-mono-stats">
+                          <div key={i} className="py-2.5 flex justify-between items-center text-[#F6F5F1] font-mono-stats">
                             <span className="font-bold">{stat.val?.[0]}</span>
-                            <span className="font-display text-[#94A3B8] text-center">{stat.label}</span>
+                            <span className="font-display text-[#8D9AA3] text-center">{stat.label}</span>
                             <span className="font-bold">{stat.val?.[1]}</span>
                           </div>
                         ))}
@@ -1496,7 +1510,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                     </div>
                   ) : selectedMatch.stats?.fieldGoalPct ? (
                     /* Basketball Statistics */
-                    <Card variant="standard" className="p-4 divide-y divide-[#1C3364]/70 text-xs">
+                    <Card variant="standard" className="p-4 divide-y divide-[#363C42] text-xs">
                       {[
                         { label: 'Field Goal %', val: selectedMatch.stats.fieldGoalPct },
                         { label: '3-Point %', val: selectedMatch.stats.threePointPct },
@@ -1504,9 +1518,9 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                         { label: 'Assists', val: selectedMatch.stats.assists },
                         { label: 'Turnovers', val: selectedMatch.stats.turnovers },
                       ].map((stat, i) => (
-                        <div key={i} className="py-2.5 flex justify-between items-center text-white font-mono-stats">
+                        <div key={i} className="py-2.5 flex justify-between items-center text-[#F6F5F1] font-mono-stats">
                           <span className="font-bold">{stat.val?.[0]}</span>
-                          <span className="font-display text-[#94A3B8] text-center">{stat.label}</span>
+                          <span className="font-display text-[#8D9AA3] text-center">{stat.label}</span>
                           <span className="font-bold">{stat.val?.[1]}</span>
                         </div>
                       ))}
@@ -1515,20 +1529,20 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                     /* Motorsport Statistics */
                     <Grid cols={3} gap="md">
                       <Card variant="standard" className="p-4 text-center space-y-1">
-                        <span className="text-[10px] text-[#94A3B8] uppercase">Pole Shootout Time</span>
-                        <p className="text-base font-bold text-[#00E599] font-mono-stats">{selectedMatch.stats.poleTime}</p>
+                        <span className="text-[10px] text-[#8D9AA3] uppercase">Pole Shootout Time</span>
+                        <p className="text-base font-bold text-[#C6AD7B] font-mono-stats">{selectedMatch.stats.poleTime}</p>
                       </Card>
                       <Card variant="standard" className="p-4 text-center space-y-1">
-                        <span className="text-[10px] text-[#94A3B8] uppercase">Track Temperature</span>
-                        <p className="text-base font-bold text-[#D9BD83] font-mono-stats">{selectedMatch.stats.trackTemp}</p>
+                        <span className="text-[10px] text-[#8D9AA3] uppercase">Track Temperature</span>
+                        <p className="text-base font-bold text-[#D9DEE2] font-mono-stats">{selectedMatch.stats.trackTemp}</p>
                       </Card>
                       <Card variant="standard" className="p-4 text-center space-y-1">
-                        <span className="text-[10px] text-[#94A3B8] uppercase">Avg Pit Stop</span>
-                        <p className="text-base font-bold text-white font-mono-stats">{selectedMatch.stats.pitStopsAvg}</p>
+                        <span className="text-[10px] text-[#8D9AA3] uppercase">Avg Pit Stop</span>
+                        <p className="text-base font-bold text-[#F6F5F1] font-mono-stats">{selectedMatch.stats.pitStopsAvg}</p>
                       </Card>
                     </Grid>
                   ) : (
-                    <p className="text-xs text-[#94A3B8] text-center py-6">
+                    <p className="text-xs text-[#8D9AA3] text-center py-6">
                       Pre-match simulation active. In-depth telemetry and shot maps will calibrate at kickoff.
                     </p>
                   )}
@@ -1542,12 +1556,12 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Home Lineup */}
                       <Card variant="standard" className="p-4 space-y-3">
-                        <h5 className="font-bold text-xs sm:text-sm text-white font-display border-b border-[#1C3364] pb-2">
+                        <h5 className="font-bold text-xs sm:text-sm text-[#F6F5F1] font-display border-b border-[#363C42] pb-2">
                           {selectedMatch.teamHome.name} (Starting Roster)
                         </h5>
-                        <ul className="space-y-1.5 text-xs text-[#94A3B8]">
+                        <ul className="space-y-1.5 text-xs text-[#8D9AA3]">
                           {selectedMatch.lineupHome.map((player, i) => (
-                            <li key={i} className="flex items-center justify-between text-white font-mono-stats">
+                            <li key={i} className="flex items-center justify-between text-[#F6F5F1] font-mono-stats">
                               <span>{player}</span>
                             </li>
                           ))}
@@ -1556,12 +1570,12 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
 
                       {/* Away Lineup */}
                       <Card variant="standard" className="p-4 space-y-3">
-                        <h5 className="font-bold text-xs sm:text-sm text-white font-display border-b border-[#1C3364] pb-2">
+                        <h5 className="font-bold text-xs sm:text-sm text-[#F6F5F1] font-display border-b border-[#363C42] pb-2">
                           {selectedMatch.teamAway.name} (Starting Roster)
                         </h5>
-                        <ul className="space-y-1.5 text-xs text-[#94A3B8]">
+                        <ul className="space-y-1.5 text-xs text-[#8D9AA3]">
                           {selectedMatch.lineupAway.map((player, i) => (
-                            <li key={i} className="flex items-center justify-between text-white font-mono-stats">
+                            <li key={i} className="flex items-center justify-between text-[#F6F5F1] font-mono-stats">
                               <span>{player}</span>
                             </li>
                           ))}
@@ -1569,7 +1583,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                       </Card>
                     </div>
                   ) : (
-                    <p className="text-xs text-[#94A3B8] text-center py-6">
+                    <p className="text-xs text-[#8D9AA3] text-center py-6">
                       Sample starting lineups are generated for match simulation.
                     </p>
                   )}
@@ -1582,28 +1596,30 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
                   {selectedMatch.headToHead ? (
                     <div className="space-y-4">
                       <Card variant="standard" className="p-4 text-center">
-                        <span className="text-xs text-[#94A3B8] uppercase tracking-wider">All-Time Competitive Series</span>
+                        <span className="text-xs text-[#8D9AA3] uppercase tracking-wider font-display font-semibold">
+                          All-Time Competitive Series
+                        </span>
                         <div className="flex items-center justify-center gap-6 mt-2 text-sm sm:text-base font-bold font-mono-stats">
-                          <span className="text-[#267BFF]">{selectedMatch.headToHead.homeWins} Wins</span>
-                          <span className="text-[#94A3B8]">{selectedMatch.headToHead.draws} Draws</span>
-                          <span className="text-[#FF3B56]">{selectedMatch.headToHead.awayWins} Wins</span>
+                          <span className="text-[#C6AD7B]">{selectedMatch.headToHead.homeWins} Wins</span>
+                          <span className="text-[#8D9AA3]">{selectedMatch.headToHead.draws} Draws</span>
+                          <span className="text-[#E47D5B]">{selectedMatch.headToHead.awayWins} Wins</span>
                         </div>
                       </Card>
 
                       <Card variant="standard" className="p-4 space-y-2">
-                        <h5 className="font-bold text-xs sm:text-sm text-white font-display">Recent Head-to-Head Encounters</h5>
-                        <ul className="divide-y divide-[#1C3364]/70 text-xs text-[#94A3B8]">
+                        <h5 className="font-bold text-xs sm:text-sm text-[#F6F5F1] font-display">Recent Head-to-Head Encounters</h5>
+                        <ul className="divide-y divide-[#363C42] text-xs text-[#8D9AA3]">
                           {selectedMatch.headToHead.recentMatches.map((past, i) => (
-                            <li key={i} className="py-2 flex items-center justify-between text-white font-mono-stats">
+                            <li key={i} className="py-2.5 flex items-center justify-between text-[#F6F5F1] font-mono-stats">
                               <span>{past}</span>
-                              <span className="text-[10px] text-[#64748B]">Simulated UCL Classification</span>
+                              <span className="text-[10px] text-[#8D9AA3]">Simulated UCL Classification</span>
                             </li>
                           ))}
                         </ul>
                       </Card>
                     </div>
                   ) : (
-                    <p className="text-xs text-[#94A3B8] text-center py-6">
+                    <p className="text-xs text-[#8D9AA3] text-center py-6">
                       Historical match archive calibration in progress.
                     </p>
                   )}
@@ -1612,8 +1628,8 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
             </div>
 
             {/* Modal Footer Actions */}
-            <div className="p-4 border-t border-[#1C3364] bg-[#0E1C38] flex items-center justify-between">
-              <span className="text-[11px] text-[#64748B]">ORVIX Synchronized Multicam Simulation Engine</span>
+            <div className="p-4 border-t border-[#363C42] bg-[#1E2327] flex items-center justify-between">
+              <span className="text-[11px] text-[#8D9AA3] font-mono-stats">ORVIX Synchronized Multicam Simulation Engine</span>
               <Button size="sm" variant="secondary" onClick={() => setSelectedMatch(null)}>
                 Close Details
               </Button>
@@ -1627,46 +1643,49 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
          ========================================================================= */}
       {selectedTeam && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 xs:p-3 sm:p-6 bg-[#040A17]/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedTeam.name} Squad Roster and Profile`}
+          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 xs:p-3 sm:p-6 bg-[#0B0D0E]/80 backdrop-blur-md overflow-y-auto animate-fade-in"
           onClick={(e) => {
             if (e.target === e.currentTarget) setSelectedTeam(null)
           }}
         >
           <div
-            className="relative w-full max-w-2xl bg-[#081329] border border-[#1C3364] rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[90vh]"
+            className="relative w-full max-w-2xl bg-[#252A2E] border border-[#363C42] rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[90vh] animate-modal-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Team Modal Header */}
-            <div className="p-4 sm:p-5 border-b border-[#1C3364] bg-[#0E1C38] flex items-center justify-between gap-3 min-w-0">
+            <div className="p-4 sm:p-5 border-b border-[#363C42] bg-[#1E2327] flex items-center justify-between gap-3 min-w-0">
               <div className="flex items-center gap-3 min-w-0">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm text-white flex-shrink-0"
-                  style={{ backgroundColor: selectedTeam.accentColor }}
+                  className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm text-[#171B1E] flex-shrink-0 shadow-sm"
+                  style={{ backgroundColor: teamAccentHex(selectedTeam.accentColor) }}
                 >
                   {selectedTeam.shortName}
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base sm:text-lg font-bold font-display text-white truncate">
+                  <h3 className="text-base sm:text-lg font-bold font-display text-[#F6F5F1] truncate">
                     {selectedTeam.name}
                   </h3>
-                  <p className="text-xs text-[#94A3B8] truncate">{selectedTeam.league} • Founded {selectedTeam.founded}</p>
+                  <p className="text-xs text-[#8D9AA3] truncate">{selectedTeam.league} • Founded {selectedTeam.founded}</p>
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={() => setSelectedTeam(null)}
-                className="text-[#94A3B8] hover:text-white font-bold p-1 text-sm"
+                className="text-[#8D9AA3] hover:text-[#F6F5F1] p-1.5 rounded-lg hover:bg-[#252A2E] transition-colors"
                 aria-label="Close team profile"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Team Modal Demonstration Disclaimer Notice */}
-            <div className="px-3.5 xs:px-4 py-2 bg-[#040A17] border-b border-[#1C3364] flex items-center justify-between text-[11px] text-[#94A3B8]">
+            <div className="px-3.5 xs:px-4 py-2 bg-[#171B1E] border-b border-[#363C42] flex items-center justify-between text-[11px] text-[#8D9AA3]">
               <span className="flex items-center gap-1.5 min-w-0 truncate">
-                <Info className="w-3.5 h-3.5 text-[#D9BD83] flex-shrink-0" />
+                <Info className="w-3.5 h-3.5 text-[#C6AD7B] flex-shrink-0" />
                 <span className="truncate">Sample Squad Roster — Demonstration Dataset</span>
               </span>
               <Badge variant="neutral" size="sm" className="flex-shrink-0 ml-2">DEMO PREVIEW</Badge>
@@ -1675,33 +1694,33 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
             {/* Team Modal Info */}
             <div className="p-4 xs:p-5 sm:p-6 overflow-y-auto space-y-4 xs:space-y-5">
               <div className="grid grid-cols-1 xs:grid-cols-2 gap-2.5 xs:gap-3 text-xs font-mono-stats">
-                <div className="p-3 rounded-xl bg-[#0E1C38] border border-[#1C3364]">
-                  <span className="text-[#94A3B8] block text-[10px]">HEAD COACH</span>
-                  <span className="font-bold text-white text-sm">{selectedTeam.coach}</span>
+                <div className="p-3 rounded-xl bg-[#171B1E] border border-[#363C42]">
+                  <span className="text-[#8D9AA3] block text-[10px]">HEAD COACH</span>
+                  <span className="font-bold text-[#F6F5F1] text-sm">{selectedTeam.coach}</span>
                 </div>
-                <div className="p-3 rounded-xl bg-[#0E1C38] border border-[#1C3364]">
-                  <span className="text-[#94A3B8] block text-[10px]">HOME ARENA</span>
-                  <span className="font-bold text-white text-sm truncate block">{selectedTeam.venue}</span>
+                <div className="p-3 rounded-xl bg-[#171B1E] border border-[#363C42]">
+                  <span className="text-[#8D9AA3] block text-[10px]">HOME ARENA</span>
+                  <span className="font-bold text-[#F6F5F1] text-sm truncate block">{selectedTeam.venue}</span>
                 </div>
               </div>
 
               {/* Sample Squad Roster */}
               <Card variant="standard" className="p-4 space-y-3">
-                <h4 className="font-bold text-sm text-white font-display flex items-center justify-between">
+                <h4 className="font-bold text-sm text-[#F6F5F1] font-display flex items-center justify-between">
                   <span>Sample Squad Roster &amp; Starting Personnel</span>
-                  <Badge variant="blue" size="sm">{selectedTeam.roster.length} Players</Badge>
+                  <Badge variant="steel" size="sm">{selectedTeam.roster.length} Players</Badge>
                 </h4>
 
-                <div className="divide-y divide-[#1C3364]/70">
+                <div className="divide-y divide-[#363C42]">
                   {selectedTeam.roster.map((player, idx) => (
-                    <div key={idx} className="py-2 flex items-center justify-between text-xs text-white">
+                    <div key={idx} className="py-2.5 flex items-center justify-between text-xs text-[#F6F5F1]">
                       <div className="flex items-center gap-2.5">
-                        <span className="font-mono-stats text-[#D9BD83] w-5 text-right font-bold">
+                        <span className="font-mono-stats text-[#C6AD7B] w-5 text-right font-bold">
                           #{player.number}
                         </span>
                         <span className="font-semibold">{player.name}</span>
                       </div>
-                      <span className="text-[11px] text-[#94A3B8] font-mono-stats">{player.position}</span>
+                      <span className="text-[11px] text-[#8D9AA3] font-mono-stats">{player.position}</span>
                     </div>
                   ))}
                 </div>
@@ -1709,7 +1728,7 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-[#1C3364] bg-[#0E1C38] flex justify-end">
+            <div className="p-4 border-t border-[#363C42] bg-[#1E2327] flex justify-end">
               <Button size="sm" variant="secondary" onClick={() => setSelectedTeam(null)}>
                 Close Profile
               </Button>
@@ -1719,4 +1738,10 @@ export const SportsPage: React.FC<SportsPageProps> = ({ onSelectSection }) => {
       )}
     </div>
   )
+}
+
+// Helper to normalize team accent color
+function teamAccentHex(color: string): string {
+  if (color.startsWith('#')) return color
+  return '#C6AD7B'
 }
