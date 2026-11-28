@@ -2,78 +2,270 @@
 
 @layer base {
   :root {
-    --midnight-base: #040A17;
-    --midnight: #081329;
-    --midnight-card: #0E1C38;
-    --midnight-elevated: #15274D;
-    --midnight-border: #1C3364;
+    /* ORVIX Brand System — Graphite × Champagne (R1 Final) */
+    --deep-graphite: #171B1E;
+    --graphite: #252A2E;
+    --graphite-hover: #2E343A;
+    --champagne: #C6AD7B;
+    --champagne-hover: #B59C6A;
+    --champagne-subtle: rgba(198, 173, 123, 0.15);
+    --soft-silver: #D9DEE2;
+    --warm-white: #F6F5F1;
+    --steel-gray: #8D9AA3;
+    --steel-gray-hover: #7D8A93;
+    --steel-gray-subtle: rgba(141, 154, 163, 0.15);
+    --slate: #68737D;
 
-    --electric-blue: #267BFF;
-    --electric-blue-hover: #1A66E5;
-    --electric-blue-glow: rgba(38, 123, 255, 0.35);
+    /* Semantic Surfaces & Borders */
+    --surface-dark: #252A2E;
+    --surface-dark-elevated: #2E343A;
+    --surface-dark-subtle: #1D2225;
+    --surface-light: #F6F5F1;
+    --surface-light-card: #FFFFFF;
+    --surface-silver: #D9DEE2;
+    --border-dark: #363C42;
+    --border-dark-subtle: #2A3035;
+    --border-light: #D9DEE2;
+    --border-champagne: #C6AD7B;
+    --border-steel: #8D9AA3;
 
-    --champagne-gold: #D9BD83;
-    --champagne-gold-hover: #C7A969;
-    --champagne-gold-glow: rgba(217, 189, 131, 0.35);
+    /* Motion & Timing Variables */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-    --soft-white: #F4F6FA;
-    --soft-muted: #94A3B8;
-    --soft-subtle: #64748B;
+    /* Legacy compatibility tokens mapped to Graphite × Champagne */
+    --charcoal: #252A2E;
+    --cool-white: #F6F5F1;
+    --dark-surface: #252A2E;
+    --muted-gray: #68737D;
+
+    --deep-charcoal: #171B1E;
+    --forest-green: #252A2E;
+    --forest-green-hover: #2E343A;
+    --electric-lime: #C6AD7B;
+    --electric-lime-hover: #B59C6A;
+    --electric-lime-subtle: rgba(198, 173, 123, 0.15);
+    --warm-ivory: #F6F5F1;
+    --soft-white: #F6F5F1;
+    --muted-sage: #68737D;
+    --warm-coral: #E47D5B;
+
+    --midnight-base: #171B1E;
+    --midnight: #171B1E;
+    --midnight-card: #252A2E;
+    --midnight-elevated: #2E343A;
+    --midnight-border: #363C42;
+
+    --electric-blue: #C6AD7B;
+    --electric-blue-hover: #B59C6A;
+    --electric-blue-glow: rgba(198, 173, 123, 0.2);
+
+    --champagne-gold: #C6AD7B;
+    --champagne-gold-hover: #B59C6A;
+    --champagne-gold-glow: rgba(198, 173, 123, 0.2);
+
+    --soft-muted: #68737D;
+    --soft-subtle: #4D565E;
   }
 
   body {
-    background-color: #081329;
-    color: #F4F6FA;
+    background-color: #171B1E;
+    color: #F6F5F1;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.015em;
   }
 }
 
-/* Custom Utilities for ORVIX Brand System */
-.bg-midnight-base { background-color: #040A17; }
-.bg-midnight { background-color: #081329; }
-.bg-midnight-card { background-color: #0E1C38; }
-.bg-midnight-elevated { background-color: #15274D; }
-.bg-midnight-border { background-color: #1C3364; }
-
-.bg-electric-blue { background-color: #267BFF; }
-.bg-electric-blue-hover { background-color: #1A66E5; }
-.bg-champagne-gold { background-color: #D9BD83; }
-.bg-champagne-gold-hover { background-color: #C7A969; }
-.bg-soft-white { background-color: #F4F6FA; }
-
-.text-midnight { color: #081329; }
-.text-electric-blue { color: #267BFF; }
-.text-champagne-gold { color: #D9BD83; }
-.text-soft-white { color: #F4F6FA; }
-.text-soft-muted { color: #94A3B8; }
-.text-soft-subtle { color: #64748B; }
-
-.border-midnight-card { border-color: #0E1C38; }
-.border-midnight-border { border-color: #1C3364; }
-.border-electric-blue { border-color: #267BFF; }
-.border-champagne-gold { border-color: #D9BD83; }
-.border-soft-white-10 { border-color: rgba(244, 246, 250, 0.1); }
-.border-soft-white-20 { border-color: rgba(244, 246, 250, 0.2); }
-
-.glow-blue {
-  box-shadow: 0 0 25px -4px rgba(38, 123, 255, 0.45);
+/* Keyframe Animations for Purposeful Motion */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.glow-blue-sm {
-  box-shadow: 0 0 12px -2px rgba(38, 123, 255, 0.4);
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightFade {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Purposeful Motion Utilities */
+.animate-fade-in {
+  animation: fadeIn 200ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-popover-in {
+  animation: slideDownFade 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-drawer-in {
+  animation: slideRightFade 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-modal-in {
+  animation: modalEnter 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Utilities for ORVIX Brand System — Graphite × Champagne */
+.bg-deep-graphite { background-color: #171B1E; }
+.bg-graphite { background-color: #252A2E; }
+.bg-graphite-hover { background-color: #2E343A; }
+.bg-champagne { background-color: #C6AD7B; }
+.bg-champagne-hover { background-color: #B59C6A; }
+.bg-soft-silver { background-color: #D9DEE2; }
+.bg-warm-white { background-color: #F6F5F1; }
+.bg-cool-white { background-color: #F6F5F1; }
+.bg-steel-gray { background-color: #8D9AA3; }
+.bg-steel-gray-hover { background-color: #7D8A93; }
+.bg-slate { background-color: #68737D; }
+
+.text-deep-graphite { color: #171B1E; }
+.text-graphite { color: #252A2E; }
+.text-champagne { color: #C6AD7B; }
+.text-soft-silver { color: #D9DEE2; }
+.text-warm-white { color: #F6F5F1; }
+.text-cool-white { color: #F6F5F1; }
+.text-steel-gray { color: #8D9AA3; }
+.text-slate { color: #68737D; }
+
+.border-graphite-border { border-color: #363C42; }
+.border-champagne { border-color: #C6AD7B; }
+.border-steel-gray { border-color: #8D9AA3; }
+.border-soft-silver { border-color: #D9DEE2; }
+.border-deep-graphite { border-color: #171B1E; }
+
+/* Backward compatibility utility classes */
+.bg-charcoal { background-color: #252A2E; }
+.bg-dark-surface { background-color: #252A2E; }
+.bg-dark-surface-elevated { background-color: #2E343A; }
+.bg-muted-gray { background-color: #68737D; }
+
+.bg-deep-charcoal { background-color: #171B1E; }
+.bg-forest-green { background-color: #252A2E; }
+.bg-electric-lime { background-color: #C6AD7B; }
+.bg-warm-ivory { background-color: #F6F5F1; }
+.bg-soft-white { background-color: #F6F5F1; }
+.bg-muted-sage { background-color: #68737D; }
+.bg-warm-coral { background-color: #E47D5B; }
+.bg-surface-dark { background-color: #252A2E; }
+.bg-surface-elevated { background-color: #2E343A; }
+
+.bg-midnight-base { background-color: #171B1E; }
+.bg-midnight { background-color: #171B1E; }
+.bg-midnight-card { background-color: #252A2E; }
+.bg-midnight-elevated { background-color: #2E343A; }
+.bg-midnight-border { background-color: #363C42; }
+.bg-electric-blue { background-color: #C6AD7B; }
+.bg-champagne-gold { background-color: #C6AD7B; }
+
+.text-charcoal { color: #252A2E; }
+.text-dark-surface { color: #252A2E; }
+.text-muted-gray { color: #68737D; }
+
+.text-deep-charcoal { color: #171B1E; }
+.text-forest-green { color: #F6F5F1; }
+.text-electric-lime { color: #C6AD7B; }
+.text-warm-ivory { color: #F6F5F1; }
+.text-soft-white { color: #F6F5F1; }
+.text-muted-sage { color: #68737D; }
+.text-warm-coral { color: #E47D5B; }
+.text-midnight { color: #171B1E; }
+.text-electric-blue { color: #C6AD7B; }
+.text-champagne-gold { color: #C6AD7B; }
+.text-soft-muted { color: #68737D; }
+
+.border-charcoal-border { border-color: #363C42; }
+.border-dark-surface { border-color: #252A2E; }
+.border-forest-green { border-color: #363C42; }
+.border-electric-lime { border-color: #C6AD7B; }
+.border-warm-ivory { border-color: #D9DEE2; }
+.border-muted-sage { border-color: #68737D; }
+.border-midnight-card { border-color: #363C42; }
+.border-midnight-border { border-color: #363C42; }
+.border-electric-blue { border-color: #C6AD7B; }
+.border-champagne-gold { border-color: #C6AD7B; }
+
+/* Subtle natural shadows */
+.shadow-sport {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
+}
+
+.shadow-sport-lg {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.glow-champagne-subtle {
+  box-shadow: 0 2px 12px rgba(198, 173, 123, 0.2);
+}
+
+.glow-steel-subtle {
+  box-shadow: 0 2px 10px rgba(141, 154, 163, 0.18);
+}
+
+/* Fallback classes */
+.glow-lime-subtle {
+  box-shadow: 0 2px 12px rgba(198, 173, 123, 0.2);
+}
+
+.glow-coral-subtle {
+  box-shadow: 0 2px 10px rgba(228, 125, 91, 0.2);
+}
+
+.glow-blue {
+  box-shadow: 0 2px 12px rgba(198, 173, 123, 0.2);
 }
 
 .glow-gold {
-  box-shadow: 0 0 25px -4px rgba(217, 189, 131, 0.4);
-}
-
-.glow-gold-sm {
-  box-shadow: 0 0 12px -2px rgba(217, 189, 131, 0.35);
+  box-shadow: 0 2px 12px rgba(198, 173, 123, 0.2);
 }
 
 .font-display {
@@ -86,31 +278,45 @@
 
 .font-mono-stats {
   font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: 'tnum' on, 'zero' on;
 }
 
-/* Glassmorphism surfaces */
-.glass-panel {
-  background: rgba(14, 28, 56, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 246, 250, 0.08);
+/* Mixed Interface Surfaces */
+.surface-card-dark {
+  background-color: #252A2E;
+  color: #F6F5F1;
+  border: 1px solid #363C42;
 }
 
-.glass-panel-elevated {
-  background: rgba(21, 39, 77, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(244, 246, 250, 0.14);
+.surface-card-light {
+  background-color: #F6F5F1;
+  color: #171B1E;
+  border: 1px solid #D9DEE2;
 }
 
-.glass-panel-gold {
-  background: rgba(217, 189, 131, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(217, 189, 131, 0.25);
+.surface-card-silver {
+  background-color: #D9DEE2;
+  color: #171B1E;
+  border: 1px solid #CAD0D5;
 }
 
-.glass-panel-blue {
-  background: rgba(38, 123, 255, 0.06);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(38, 123, 255, 0.25);
+/* Accessibility Focus Ring Utility */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #C6AD7B, 0 0 0 4px #171B1E;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
